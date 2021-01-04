@@ -1,8 +1,9 @@
 import React from "react";
+import Welcome from "./pages/Welcome";
 
-const App = () => (
+const App = (): JSX.Element => (
   <div>
-    <header>тест</header>
+    <Welcome />
   </div>
 );
 
