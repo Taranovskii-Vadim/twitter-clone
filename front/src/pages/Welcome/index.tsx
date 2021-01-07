@@ -26,6 +26,7 @@ const Welcome = (): JSX.Element => {
         <TextField label='Электронный адрес' type='email' fullWidth />
         <TextField label='Пароль' type='password' fullWidth />
         <Button
+          style={{ margin: "15px 0px 10px" }}
           variant='contained'
           onClick={() => setIsModalOpen(undefined)}
           color='primary'
@@ -42,6 +43,7 @@ const Welcome = (): JSX.Element => {
         <TextField label='Электронный адрес' type='email' fullWidth />
         <TextField label='Пароль' type='password' fullWidth />
         <Button
+          style={{ margin: "15px 0px 10px" }}
           variant='contained'
           onClick={() => setIsModalOpen(undefined)}
           color='primary'
