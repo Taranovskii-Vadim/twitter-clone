@@ -1,7 +1,9 @@
 import React from "react";
-import { Grid, Container, IconButton, TextField } from "@material-ui/core";
+import { Grid, Container } from "@material-ui/core";
+
 import Navbar from "./components/Navbar";
-import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
+import MainContent from "./components/MainContent";
+import Sidebar from "./components/Sidebar";
 
 import { useStyles } from "./styles";
 
@@ -14,10 +16,10 @@ const Home = (): JSX.Element => {
           <Navbar />
         </Grid>
         <Grid item xs={6}>
-          xs
+          <MainContent />
         </Grid>
         <Grid item xs={3}>
-          <TextField fullWidth placeholder='Поиск' />
+          <Sidebar />
         </Grid>
       </Grid>
     </Container>

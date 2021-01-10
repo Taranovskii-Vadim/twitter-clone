@@ -23,6 +23,14 @@ const Navbar = () => {
       </li>
       <li className={styles.navBarListItem}>
         <IconButton className={styles.navBarIconButton}>
+          <HomeOutlinedIcon className={styles.navBarIcon} />
+        </IconButton>
+        <Typography className={styles.navBarLable} variant='h6'>
+          Главная
+        </Typography>
+      </li>
+      <li className={styles.navBarListItem}>
+        <IconButton className={styles.navBarIconButton}>
           <SearchOutlinedIcon className={styles.navBarIcon} />
         </IconButton>
         <Typography className={styles.navBarLable} variant='h6'>
