@@ -41,7 +41,9 @@ const Welcome = (): JSX.Element => {
         onClose={() => setIsModalOpen(undefined)}
       >
         <TextField label='Электронный адрес' type='email' fullWidth />
+        <TextField label='Имя' type='text' fullWidth />
         <TextField label='Пароль' type='password' fullWidth />
+        <TextField label='Повторите пароль' type='password' fullWidth />
         <Button
           style={{ margin: "15px 0px 10px" }}
           variant='contained'
