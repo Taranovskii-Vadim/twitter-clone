@@ -1,5 +1,6 @@
 import React from "react";
-import { IconButton, Typography } from "@material-ui/core";
+import { NavLink } from "react-router-dom";
+import { Typography } from "@material-ui/core";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
@@ -15,76 +16,90 @@ import { useStyles } from "./styles";
 const Navbar = () => {
   const styles = useStyles();
   return (
-    <ul className={styles.navBarList}>
-      <li className={styles.navBarListItem}>
-        <IconButton className={styles.navBarIconButton}>
-          <TwitterIcon color='primary' className={styles.navBarLogo} />
-        </IconButton>
+    <ul className={styles.root}>
+      <li className={styles.rootItem}>
+        <TwitterIcon color='primary' className={styles.rootLogo} />
       </li>
-      <li className={styles.navBarListItem}>
-        <IconButton className={styles.navBarIconButton}>
-          <HomeOutlinedIcon className={styles.navBarIcon} />
-        </IconButton>
+      <NavLink
+        to='/home'
+        className={styles.rootItem}
+        activeClassName={styles.activeItem}
+      >
+        <HomeOutlinedIcon className={styles.navBarIcon} />
         <Typography className={styles.navBarLable} variant='h6'>
           Главная
         </Typography>
-      </li>
-      <li className={styles.navBarListItem}>
-        <IconButton className={styles.navBarIconButton}>
-          <SearchOutlinedIcon className={styles.navBarIcon} />
-        </IconButton>
+      </NavLink>
+      <NavLink
+        to='/search'
+        className={styles.rootItem}
+        activeClassName={styles.activeItem}
+      >
+        <SearchOutlinedIcon className={styles.navBarIcon} />
         <Typography className={styles.navBarLable} variant='h6'>
           Поиск
         </Typography>
-      </li>
-      <li className={styles.navBarListItem}>
-        <IconButton className={styles.navBarIconButton}>
-          <NotificationsNoneOutlinedIcon className={styles.navBarIcon} />
-        </IconButton>
+      </NavLink>
+      <NavLink
+        to='/notifications'
+        className={styles.rootItem}
+        activeClassName={styles.activeItem}
+      >
+        <NotificationsNoneOutlinedIcon className={styles.navBarIcon} />
         <Typography className={styles.navBarLable} variant='h6'>
           Уведомления
         </Typography>
-      </li>
-      <li className={styles.navBarListItem}>
-        <IconButton className={styles.navBarIconButton}>
-          <EmailOutlinedIcon className={styles.navBarIcon} />
-        </IconButton>
+      </NavLink>
+      <NavLink
+        to='/messages'
+        className={styles.rootItem}
+        activeClassName={styles.activeItem}
+      >
+        <EmailOutlinedIcon className={styles.navBarIcon} />
         <Typography className={styles.navBarLable} variant='h6'>
           Сообщения
         </Typography>
-      </li>
-      <li className={styles.navBarListItem}>
-        <IconButton className={styles.navBarIconButton}>
-          <BookmarkBorderOutlinedIcon className={styles.navBarIcon} />
-        </IconButton>
+      </NavLink>
+      <NavLink
+        to='/bookmarks'
+        className={styles.rootItem}
+        activeClassName={styles.activeItem}
+      >
+        <BookmarkBorderOutlinedIcon className={styles.navBarIcon} />
         <Typography className={styles.navBarLable} variant='h6'>
           Закладки
         </Typography>
-      </li>
-      <li className={styles.navBarListItem}>
-        <IconButton className={styles.navBarIconButton}>
-          <ListAltOutlinedIcon className={styles.navBarIcon} />
-        </IconButton>
+      </NavLink>
+      <NavLink
+        to='/lists'
+        className={styles.rootItem}
+        activeClassName={styles.activeItem}
+      >
+        <ListAltOutlinedIcon className={styles.navBarIcon} />
         <Typography className={styles.navBarLable} variant='h6'>
           Списки
         </Typography>
-      </li>
-      <li className={styles.navBarListItem}>
-        <IconButton className={styles.navBarIconButton}>
-          <PersonOutlineOutlinedIcon className={styles.navBarIcon} />
-        </IconButton>
+      </NavLink>
+      <NavLink
+        to='/profile'
+        className={styles.rootItem}
+        activeClassName={styles.activeItem}
+      >
+        <PersonOutlineOutlinedIcon className={styles.navBarIcon} />
         <Typography className={styles.navBarLable} variant='h6'>
           Профиль
         </Typography>
-      </li>
-      <li className={styles.navBarListItem}>
-        <IconButton className={styles.navBarIconButton}>
-          <MoreHorizOutlinedIcon className={styles.navBarIcon} />
-        </IconButton>
+      </NavLink>
+      <NavLink
+        to='/more'
+        className={styles.rootItem}
+        activeClassName={styles.activeItem}
+      >
+        <MoreHorizOutlinedIcon className={styles.navBarIcon} />
         <Typography className={styles.navBarLable} variant='h6'>
           Еще
         </Typography>
-      </li>
+      </NavLink>
     </ul>
   );
 };

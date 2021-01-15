@@ -7,7 +7,7 @@ const App = (): JSX.Element => (
   <div>
     <Switch>
       <Route exact path='/' component={Welcome} />
-      <Route path='/home' component={Home} />
+      <Route path='/' component={Home} />
     </Switch>
   </div>
 );

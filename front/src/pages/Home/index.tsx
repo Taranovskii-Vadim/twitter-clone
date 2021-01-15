@@ -1,5 +1,6 @@
 import React from "react";
-import { Grid, Container } from "@material-ui/core";
+import { Grid, Container, Button } from "@material-ui/core";
+import { Switch, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import MainContent from "./components/MainContent";
@@ -14,9 +15,15 @@ const Home = (): JSX.Element => {
       <Grid container spacing={3}>
         <Grid item xs={3}>
           <Navbar />
+          <Button variant='contained' color='primary' fullWidth>
+            Твитнуть
+          </Button>
         </Grid>
         <Grid item xs={6}>
-          <MainContent />
+          <Switch>
+            <Route path='/home' component={MainContent} />
+            <Route path='/search' render={() => <p>Search</p>} />
+          </Switch>
         </Grid>
         <Grid item xs={3}>
           <Sidebar />
