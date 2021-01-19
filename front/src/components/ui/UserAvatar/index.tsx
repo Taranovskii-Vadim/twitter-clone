@@ -2,7 +2,7 @@ import React from "react";
 import { Avatar } from "@material-ui/core";
 
 interface AvatarProps {
-  size: "small" | "medium" | "large";
+  size?: "small" | "medium" | "large";
 }
 
 const UserAvatar: React.FC<AvatarProps> = ({ size }): JSX.Element => {

@@ -4,7 +4,7 @@ import grey from "@material-ui/core/colors/grey";
 export const useStyles = makeStyles(theme => ({
   root: {
     position: "sticky",
-    top: 0,
+    top: 12,
     listStyle: "none",
     padding: 0,
     margin: 0,

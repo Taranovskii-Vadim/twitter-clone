@@ -4,20 +4,28 @@ import {
   makeStyles,
   withStyles,
 } from "@material-ui/core";
+import grey from "@material-ui/core/colors/grey";
 
-export const CustomInput = withStyles(() =>
+export const CustomInput = withStyles(theme =>
   createStyles({
     input: {
       boxSizing: "border-box",
       borderRadius: 30,
-      backgroundColor: "#cccccc",
+      marginBottom: 20,
+      backgroundColor: grey[200],
+      border: `1px solid ${grey[200]}`,
       padding: "18px 13px",
+      "&:focus": {
+        backgroundColor: "white",
+        border: `1px solid ${theme.palette.primary.main}`,
+      },
     },
   })
 )(InputBase);
 
 export const useStyles = makeStyles(theme => ({
   wrapper: {
-    height: "100%",
+    position: "sticky",
+    top: 12,
   },
 }));
