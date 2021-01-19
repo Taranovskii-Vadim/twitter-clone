@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Typography } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import Hidden from "@material-ui/core/Hidden";
+import Button from "@material-ui/core/Button";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
@@ -10,6 +12,7 @@ import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutline
 import ListAltOutlinedIcon from "@material-ui/icons/ListAltOutlined";
 import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined";
 import MoreHorizOutlinedIcon from "@material-ui/icons/MoreHorizOutlined";
+import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
 
 import { useStyles } from "./styles";
 
@@ -26,9 +29,11 @@ const Navbar = () => {
         activeClassName={styles.activeItem}
       >
         <HomeOutlinedIcon className={styles.navBarIcon} />
-        <Typography className={styles.navBarLable} variant='h6'>
-          Главная
-        </Typography>
+        <Hidden smDown>
+          <Typography className={styles.navBarLable} variant='h6'>
+            Главная
+          </Typography>
+        </Hidden>
       </NavLink>
       <NavLink
         to='/search'
@@ -36,9 +41,11 @@ const Navbar = () => {
         activeClassName={styles.activeItem}
       >
         <SearchOutlinedIcon className={styles.navBarIcon} />
-        <Typography className={styles.navBarLable} variant='h6'>
-          Поиск
-        </Typography>
+        <Hidden smDown>
+          <Typography className={styles.navBarLable} variant='h6'>
+            Поиск
+          </Typography>
+        </Hidden>
       </NavLink>
       <NavLink
         to='/notifications'
@@ -46,9 +53,11 @@ const Navbar = () => {
         activeClassName={styles.activeItem}
       >
         <NotificationsNoneOutlinedIcon className={styles.navBarIcon} />
-        <Typography className={styles.navBarLable} variant='h6'>
-          Уведомления
-        </Typography>
+        <Hidden smDown>
+          <Typography className={styles.navBarLable} variant='h6'>
+            Уведомления
+          </Typography>
+        </Hidden>
       </NavLink>
       <NavLink
         to='/messages'
@@ -56,9 +65,11 @@ const Navbar = () => {
         activeClassName={styles.activeItem}
       >
         <EmailOutlinedIcon className={styles.navBarIcon} />
-        <Typography className={styles.navBarLable} variant='h6'>
-          Сообщения
-        </Typography>
+        <Hidden smDown>
+          <Typography className={styles.navBarLable} variant='h6'>
+            Сообщения
+          </Typography>
+        </Hidden>
       </NavLink>
       <NavLink
         to='/bookmarks'
@@ -66,9 +77,11 @@ const Navbar = () => {
         activeClassName={styles.activeItem}
       >
         <BookmarkBorderOutlinedIcon className={styles.navBarIcon} />
-        <Typography className={styles.navBarLable} variant='h6'>
-          Закладки
-        </Typography>
+        <Hidden smDown>
+          <Typography className={styles.navBarLable} variant='h6'>
+            Закладки
+          </Typography>
+        </Hidden>
       </NavLink>
       <NavLink
         to='/lists'
@@ -76,9 +89,11 @@ const Navbar = () => {
         activeClassName={styles.activeItem}
       >
         <ListAltOutlinedIcon className={styles.navBarIcon} />
-        <Typography className={styles.navBarLable} variant='h6'>
-          Списки
-        </Typography>
+        <Hidden smDown>
+          <Typography className={styles.navBarLable} variant='h6'>
+            Списки
+          </Typography>
+        </Hidden>
       </NavLink>
       <NavLink
         to='/profile'
@@ -86,20 +101,31 @@ const Navbar = () => {
         activeClassName={styles.activeItem}
       >
         <PersonOutlineOutlinedIcon className={styles.navBarIcon} />
-        <Typography className={styles.navBarLable} variant='h6'>
-          Профиль
-        </Typography>
+        <Hidden smDown>
+          <Typography className={styles.navBarLable} variant='h6'>
+            Профиль
+          </Typography>
+        </Hidden>
       </NavLink>
       <NavLink
         to='/more'
         className={styles.rootItem}
+        style={{ marginBottom: 30 }}
         activeClassName={styles.activeItem}
       >
         <MoreHorizOutlinedIcon className={styles.navBarIcon} />
-        <Typography className={styles.navBarLable} variant='h6'>
-          Еще
-        </Typography>
+        <Hidden smDown>
+          <Typography className={styles.navBarLable} variant='h6'>
+            Еще
+          </Typography>
+        </Hidden>
       </NavLink>
+      <Button variant='contained' color='primary' fullWidth>
+        <Hidden smDown>Твитнуть</Hidden>
+        <Hidden mdUp>
+          <CreateOutlinedIcon />
+        </Hidden>
+      </Button>
     </ul>
   );
 };

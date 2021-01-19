@@ -3,6 +3,8 @@ import grey from "@material-ui/core/colors/grey";
 
 export const useStyles = makeStyles(theme => ({
   root: {
+    display: "flex",
+    justifyContent: "space-between",
     cursor: "pointer",
     padding: "5px 10px",
     borderBottom: `1px solid ${grey[300]}`,
@@ -14,6 +16,7 @@ export const useStyles = makeStyles(theme => ({
   avatarBlock: {
     display: "flex",
     alignItems: "top",
+    marginRight: 10,
   },
   userInfo: {
     fontSize: 15,

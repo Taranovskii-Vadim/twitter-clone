@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
 import TweetTools from "./components/TweetTools";
 
@@ -10,11 +10,11 @@ import { useStyles } from "./styles";
 const Tweet = () => {
   const styles = useStyles();
   return (
-    <Grid container spacing={0} className={styles.root}>
-      <Grid item xs={1} className={styles.avatarBlock}>
-        <UserAvatar />
-      </Grid>
-      <Grid item xs={11}>
+    <div className={styles.root}>
+      <div className={styles.avatarBlock}>
+        <UserAvatar size='small' />
+      </div>
+      <div>
         <Typography className={styles.userInfo}>
           vadim <small>@vadim час назад</small>
         </Typography>
@@ -23,8 +23,8 @@ const Tweet = () => {
           doloremque magni quisquam id facilis.
         </Typography>
         <TweetTools />
-      </Grid>
-    </Grid>
+      </div>
+    </div>
   );
 };
 

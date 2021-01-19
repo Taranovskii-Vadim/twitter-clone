@@ -3,9 +3,11 @@ import grey from "@material-ui/core/colors/grey";
 
 export const useStyles = makeStyles(theme => ({
   root: {
+    position: "sticky",
+    top: 0,
     listStyle: "none",
     padding: 0,
-    margin: "0px 0px 30px 0px",
+    margin: 0,
   },
   rootLogo: {
     fontSize: 36,
