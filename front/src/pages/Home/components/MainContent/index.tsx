@@ -2,6 +2,8 @@ import React from "react";
 import { Paper, Typography } from "@material-ui/core";
 
 import Tweet from "../../../../components/Tweet";
+import TweetForm from "../../../../components/TweetForm";
+import SeparateLine from "../../../../components/ui/SeparateLine";
 
 import { useStyles } from "./styles";
 
@@ -12,28 +14,8 @@ const MainContent = () => {
       <Typography variant='h6' className={styles.header}>
         Главная
       </Typography>
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
+      <TweetForm />
+      <SeparateLine />
       <Tweet />
       <Tweet />
       <Tweet />
