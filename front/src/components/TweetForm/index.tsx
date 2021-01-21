@@ -16,14 +16,18 @@ import { useStyles } from "./styles";
 const TweetForm: React.FC = (): JSX.Element => {
   const styles = useStyles();
   const [news, setNews] = React.useState<string>("");
-  const [percent, setPercent] = React.useState<number>(0);
+  const newsPercent = (news.length * 100) / MAX_TEXTAREA_LENGTH;
 
-  const isLimit = news.length === MAX_TEXTAREA_LENGTH;
+  const isLimit = news.length >= MAX_TEXTAREA_LENGTH;
+
+  const CircularProgressStyle = {
+    marginLeft: 10,
+    color: isLimit ? "red" : "",
+  };
 
   const onChangeNewsHandler = (e: React.FormEvent<HTMLTextAreaElement>) => {
     const value = e.currentTarget.value;
     setNews(value);
-    setPercent((value.length * 100) / MAX_TEXTAREA_LENGTH);
   };
 
   return (
@@ -37,7 +41,6 @@ const TweetForm: React.FC = (): JSX.Element => {
           onChange={onChangeNewsHandler}
           value={news}
           rowsMin={4}
-          maxLength={MAX_TEXTAREA_LENGTH}
           placeholder={getRandomPlaceholder()}
         />
         <div className={styles.rootFormFooter}>
@@ -52,20 +55,20 @@ const TweetForm: React.FC = (): JSX.Element => {
           <div className={styles.rootFormFooterItem}>
             {news ? (
               <>
-                <span>{news.length}</span>
+                <span>
+                  {isLimit ? MAX_TEXTAREA_LENGTH - news.length : news.length}
+                </span>
                 <CircularProgress
-                  style={{
-                    marginLeft: 10,
-                    color: isLimit ? "red" : "",
-                  }}
+                  style={CircularProgressStyle}
                   size={20}
                   variant='determinate'
-                  value={percent}
+                  value={isLimit ? 100 : newsPercent}
                 />
               </>
             ) : null}
             <Button
               className={styles.rootFormFooterBtn}
+              disabled={isLimit}
               size='small'
               variant='contained'
               color='primary'
