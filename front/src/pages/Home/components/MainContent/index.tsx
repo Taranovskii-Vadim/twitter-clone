@@ -1,5 +1,6 @@
 import React from "react";
-import { Paper, Typography } from "@material-ui/core";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
 import Tweet from "../../../../components/Tweet";
 import TweetForm from "../../../../components/TweetForm";
@@ -7,7 +8,7 @@ import SeparateLine from "../../../../components/ui/SeparateLine";
 
 import { useStyles } from "./styles";
 
-const MainContent = () => {
+const MainContent: React.FC = (): JSX.Element => {
   const styles = useStyles();
   return (
     <Paper className={styles.wrapper}>

@@ -19,7 +19,7 @@ import TweetForm from "../../../../components/TweetForm";
 
 import { useStyles } from "./styles";
 
-const Navbar = () => {
+const Navbar: React.FC = (): JSX.Element => {
   const styles = useStyles();
   const [isModal, setIsModal] = React.useState<boolean>(false);
   return (

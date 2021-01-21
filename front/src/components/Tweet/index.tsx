@@ -1,9 +1,8 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 
-import TweetTools from "./components/TweetTools";
-
 import UserAvatar from "../ui/UserAvatar";
+import TweetTools from "./components/TweetTools";
 
 import { useStyles } from "./styles";
 

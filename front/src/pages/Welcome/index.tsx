@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Button, TextField } from "@material-ui/core";
+import React from "react";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 import Modal from "../../components/Modal";
 import LeftSide from "./components/LeftSide";
@@ -7,9 +8,9 @@ import RightSide from "./components/RightSide";
 
 import { useStyles } from "./styles";
 
-const Welcome = (): JSX.Element => {
+const Welcome: React.FC = (): JSX.Element => {
   const styles = useStyles();
-  const [isModalOpen, setIsModalOpen] = useState<"signIn" | "signUp">();
+  const [isModalOpen, setIsModalOpen] = React.useState<"signIn" | "signUp">();
 
   return (
     <div className={styles.wrapper}>

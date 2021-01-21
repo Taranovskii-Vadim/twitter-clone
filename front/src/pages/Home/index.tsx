@@ -1,7 +1,7 @@
 import React from "react";
-import { Grid, Container } from "@material-ui/core";
-
 import { Switch, Route } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
 
 import Navbar from "./components/Navbar";
 import MainContent from "./components/MainContent";
@@ -9,7 +9,7 @@ import Sidebar from "./components/Sidebar";
 
 import { useStyles } from "./styles";
 
-const Home = (): JSX.Element => {
+const Home: React.FC = (): JSX.Element => {
   const styles = useStyles();
   return (
     <Container className={styles.wrapper} maxWidth='lg'>

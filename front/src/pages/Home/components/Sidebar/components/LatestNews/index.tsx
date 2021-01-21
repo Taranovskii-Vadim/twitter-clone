@@ -1,11 +1,11 @@
 import React from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import { Typography } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
 import { useStyles } from "./styles";
 
-const LatestNews = () => {
+const LatestNews: React.FC = (): JSX.Element => {
   const styles = useStyles();
   return (
     <List disablePadding className={styles.root}>
