@@ -20,6 +20,7 @@ export const useStyles = makeStyles(theme => ({
     border: "none",
     resize: "none",
     marginBottom: 10,
+    fontSize: 18,
     outline: "none",
   },
   rootFormFooter: {

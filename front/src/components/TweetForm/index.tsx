@@ -9,17 +9,21 @@ import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import UserAvatar from "../ui/UserAvatar";
 
 import { MAX_TEXTAREA_LENGTH } from "./constants";
+import { getRandomPlaceholder } from "./helpers";
 
 import { useStyles } from "./styles";
 
-const TweetForm = () => {
+const TweetForm: React.FC = (): JSX.Element => {
   const styles = useStyles();
   const [news, setNews] = React.useState<string>("");
   const [percent, setPercent] = React.useState<number>(0);
 
+  const isLimit = news.length === MAX_TEXTAREA_LENGTH;
+
   const onChangeNewsHandler = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    setNews(e.currentTarget.value);
-    setPercent((e.currentTarget.value.length * 100) / MAX_TEXTAREA_LENGTH);
+    const value = e.currentTarget.value;
+    setNews(value);
+    setPercent((value.length * 100) / MAX_TEXTAREA_LENGTH);
   };
 
   return (
@@ -34,7 +38,7 @@ const TweetForm = () => {
           value={news}
           rowsMin={4}
           maxLength={MAX_TEXTAREA_LENGTH}
-          placeholder='Что происходит?'
+          placeholder={getRandomPlaceholder()}
         />
         <div className={styles.rootFormFooter}>
           <div className={styles.rootFormFooterItem}>
@@ -50,7 +54,10 @@ const TweetForm = () => {
               <>
                 <span>{news.length}</span>
                 <CircularProgress
-                  style={{ marginLeft: 10 }}
+                  style={{
+                    marginLeft: 10,
+                    color: isLimit ? "red" : "",
+                  }}
                   size={20}
                   variant='determinate'
                   value={percent}

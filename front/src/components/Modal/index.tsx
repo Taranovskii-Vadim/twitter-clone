@@ -5,26 +5,27 @@ interface ModalProps {
   title: string;
   visible: boolean;
   children: React.ReactNode;
+  width?: string;
   onClose: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({
-  title,
-  visible,
-  children,
-  onClose,
-}): JSX.Element | null => {
-  if (!visible) {
+const Modal: React.FC<ModalProps> = (props): JSX.Element | null => {
+  if (!props.visible) {
     return null;
   }
+
+  const styles = {
+    width: props.width,
+  };
+
   return (
     <Dialog
-      open={visible}
-      onClose={onClose}
+      open={props.visible}
+      onClose={props.onClose}
       aria-labelledby='form-dialog-title'
     >
-      <DialogTitle id='form-dialog-title'>{title}</DialogTitle>
-      <DialogContent>{children}</DialogContent>
+      <DialogTitle id='form-dialog-title'>{props.title}</DialogTitle>
+      <DialogContent style={styles}>{props.children}</DialogContent>
     </Dialog>
   );
 };

@@ -14,10 +14,14 @@ import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined"
 import MoreHorizOutlinedIcon from "@material-ui/icons/MoreHorizOutlined";
 import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
 
+import Modal from "../../../../components/Modal";
+import TweetForm from "../../../../components/TweetForm";
+
 import { useStyles } from "./styles";
 
 const Navbar = () => {
   const styles = useStyles();
+  const [isModal, setIsModal] = React.useState<boolean>(false);
   return (
     <ul className={styles.root}>
       <li className={styles.rootItem}>
@@ -120,12 +124,25 @@ const Navbar = () => {
           </Typography>
         </Hidden>
       </NavLink>
-      <Button variant='contained' color='primary' fullWidth>
+      <Button
+        variant='contained'
+        color='primary'
+        fullWidth
+        onClick={() => setIsModal(true)}
+      >
         <Hidden smDown>Твитнуть</Hidden>
         <Hidden mdUp>
           <CreateOutlinedIcon />
         </Hidden>
       </Button>
+      <Modal
+        title='Добавить новость'
+        width='600px'
+        visible={isModal}
+        onClose={() => setIsModal(false)}
+      >
+        <TweetForm />
+      </Modal>
     </ul>
   );
 };
