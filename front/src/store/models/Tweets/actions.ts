@@ -1,4 +1,4 @@
-import { SetTweets, FetchTweets, Types, State } from "./types";
+import { FetchTweets, SetTweets, State, Types } from "./types";
 
 export const setTweets = (payload: State["items"]): SetTweets => ({
   type: Types.SET_TWEETS,

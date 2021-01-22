@@ -4,17 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 
+import { fetchTweets } from "../../store/models/Tweets/actions";
+import { selectTweets } from "../../store/models/Tweets/selectors";
+
 import Navbar from "./components/Navbar";
 import MainContent from "./components/MainContent";
 import Sidebar from "./components/Sidebar";
-
-import { fetchTweets } from "../../store/models/Tweets/actions";
-import { selectTweets } from "../../store/models/Tweets/selectors";
 
 import { useStyles } from "./styles";
 
 const Home: React.FC = (): JSX.Element => {
   const styles = useStyles();
+
   const dispatch = useDispatch();
   const tweets = useSelector(selectTweets);
 

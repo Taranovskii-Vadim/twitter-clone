@@ -1,11 +1,12 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 
+import { Tweet as TweetType } from "../../store/models/Tweets/types";
+
 import UserAvatar from "../ui/UserAvatar";
 import TweetTools from "./components/TweetTools";
 
 import { useStyles } from "./styles";
-import { Tweet as TweetType } from "../../store/models/Tweets/types";
 
 interface IProps {
   tweet: TweetType;
