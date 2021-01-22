@@ -5,22 +5,24 @@ import UserAvatar from "../ui/UserAvatar";
 import TweetTools from "./components/TweetTools";
 
 import { useStyles } from "./styles";
+import { Tweet as TweetType } from "../../store/models/Tweets/types";
 
-const Tweet = () => {
+interface IProps {
+  tweet: TweetType;
+}
+
+const Tweet: React.FC<IProps> = ({ tweet }): JSX.Element => {
   const styles = useStyles();
   return (
     <div className={styles.root}>
       <div className={styles.avatarBlock}>
-        <UserAvatar size='small' />
+        <UserAvatar url={tweet.user.avatarUrl} size='small' />
       </div>
-      <div>
+      <div style={{ width: "100%" }}>
         <Typography className={styles.userInfo}>
-          vadim <small>@vadim час назад</small>
+          {tweet.user.name} <small>{tweet.user.nickname} час назад</small>
         </Typography>
-        <Typography className={styles.message}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime soluta
-          doloremque magni quisquam id facilis.
-        </Typography>
+        <Typography className={styles.message}>{tweet.text}</Typography>
         <TweetTools />
       </div>
     </div>

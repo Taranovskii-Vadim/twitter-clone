@@ -7,8 +7,14 @@ import TweetForm from "../../../../components/TweetForm";
 import SeparateLine from "../../../../components/ui/SeparateLine";
 
 import { useStyles } from "./styles";
+// TODO: подправь типы!!!!
+import { Tweet as TweetType } from "../../../../store/models/Tweets/types";
 
-const MainContent: React.FC = (): JSX.Element => {
+interface IProps {
+  tweets: TweetType[];
+}
+
+const MainContent: React.FC<IProps> = ({ tweets }): JSX.Element => {
   const styles = useStyles();
   return (
     <Paper className={styles.wrapper}>
@@ -17,11 +23,9 @@ const MainContent: React.FC = (): JSX.Element => {
       </Typography>
       <TweetForm />
       <SeparateLine />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
-      <Tweet />
+      {tweets.map(item => (
+        <Tweet key={item.id} tweet={item} />
+      ))}
     </Paper>
   );
 };
