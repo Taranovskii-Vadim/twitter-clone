@@ -141,7 +141,7 @@ const Navbar: React.FC = (): JSX.Element => {
         visible={isModal}
         onClose={() => setIsModal(false)}
       >
-        <TweetForm />
+        <TweetForm padding={0} />
       </Modal>
     </ul>
   );

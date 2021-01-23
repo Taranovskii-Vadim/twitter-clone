@@ -1,7 +1,9 @@
+import axios from "axios";
 import { State } from "../models/Tweets/types";
 
 export const tweetsApi = {
-  fetchData(): State["items"] {
+  async fetchData(): Promise<State["items"]> {
+    const data = await axios.get("https://jsonplaceholder.typicode.com/todos");
     return [
       {
         id: "600aed5a16f05d452aef2590",

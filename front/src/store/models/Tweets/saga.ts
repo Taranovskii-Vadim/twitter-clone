@@ -1,10 +1,14 @@
-import { put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
+
+import { Status } from "../../types";
+
 import { tweetsApi } from "../../api/tweetsApi";
-import { setTweets } from "./actions";
+import { setTweets, changeStatus } from "./actions";
 import { Types } from "./types";
 
 function* getTweets() {
-  const data = tweetsApi.fetchData();
+  yield put(changeStatus(Status.loading));
+  const data = yield call(tweetsApi.fetchData);
   yield put(setTweets(data));
 }
 

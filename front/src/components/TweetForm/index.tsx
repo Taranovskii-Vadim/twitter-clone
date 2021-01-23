@@ -13,7 +13,11 @@ import { getRandomPlaceholder } from "./helpers";
 
 import { useStyles } from "./styles";
 
-const TweetForm: React.FC = (): JSX.Element => {
+interface IProps {
+  padding?: string | number;
+}
+
+const TweetForm: React.FC<IProps> = ({ padding }): JSX.Element => {
   const styles = useStyles();
   const [news, setNews] = React.useState<string>("");
   const newsPercent = (news.length * 100) / MAX_TEXTAREA_LENGTH;
@@ -31,7 +35,7 @@ const TweetForm: React.FC = (): JSX.Element => {
   };
 
   return (
-    <div className={styles.root}>
+    <div style={{ padding }} className={styles.root}>
       <div className={styles.avatarBlock}>
         <UserAvatar size='small' />
       </div>

@@ -25,6 +25,7 @@ export interface State {
 export enum Types {
   SET_TWEETS = "/tweets/SET_TWEETS",
   FETCH_TWEETS = "/tweets/FETCH_TWEETS",
+  CHANGE_STATUS = "/tweets/CHANGE_STATUS",
 }
 
 export interface SetTweets extends Action<Types> {
@@ -35,5 +36,10 @@ export interface SetTweets extends Action<Types> {
 export interface FetchTweets extends Action<Types> {
   type: Types.FETCH_TWEETS;
 }
+// TODO: изменение статуса можно сделать в виде хука
+export interface ChangeStatus extends Action<Types> {
+  type: Types.CHANGE_STATUS;
+  payload: Status;
+}
 
-export type Actions = SetTweets;
+export type Actions = SetTweets | ChangeStatus;
