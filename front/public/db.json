@@ -98,10 +98,10 @@
     "avatarUrl": "https://img1.goodfon.ru/original/3830x2550/d/48/nastroeniya-devushka-ulybka-3172.jpg"
   },
   "favTags": [
-    { "title": "#Митинги", "count": 19785 },
-    { "title": "Навальный", "count": 8452 },
-    { "title": "Путин", "count": 4357 },
-    { "title": "Беларусь", "count": 1234 }
+    { "id": "501aed4a12f05d452aef2278", "title": "#Митинги", "count": 19785 },
+    { "id": "202aed2a12f05d452aef2577", "title": "Навальный", "count": 8452 },
+    { "id": "402aed1a12f05d452aef2472", "title": "Путин", "count": 4357 },
+    { "id": "101aed3a12f05d452aef2671", "title": "Беларусь", "count": 1234 }
   ],
   "recUsers": [
     {

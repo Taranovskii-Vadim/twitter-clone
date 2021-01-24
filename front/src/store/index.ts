@@ -3,13 +3,21 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { all } from "redux-saga/effects";
 import createSagaMiddleware from "redux-saga";
 
+// Reducers
 import { tweetsReducer } from "./models/tweets";
-import { tweetsSaga } from "./models/tweets/saga";
+import { tagsReducer } from "./models/tags";
 
-const rootReducer = combineReducers({ tweets: tweetsReducer });
+// Saga
+import { tweetsSaga } from "./models/tweets/saga";
+import { tagsSaga } from "./models/tags/saga";
+
+const rootReducer = combineReducers({
+  tweets: tweetsReducer,
+  tags: tagsReducer,
+});
 
 function* rootSaga() {
-  yield all([tweetsSaga()]);
+  yield all([tweetsSaga(), tagsSaga()]);
 }
 
 const sagaMiddleware = createSagaMiddleware();
