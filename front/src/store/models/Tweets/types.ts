@@ -1,45 +1,46 @@
 import { Action } from "redux";
-import { Status } from "../../types";
 
-// Data
+import { EStatus } from "../../types";
 
-export interface User {
+// data
+
+interface IUser {
   name: string;
   nickname: string;
   avatarUrl: string;
 }
 
-export interface Tweet {
-  id: string;
+export interface ITweet {
+  readonly id: string;
   text: string;
-  user: User;
+  user: IUser;
 }
 
-export interface State {
-  items: Tweet[];
-  status: Status;
+export interface IState {
+  items: ITweet[];
+  status: EStatus;
 }
 
-//Actions
+// actions
 
-export enum Types {
+export enum ETypes {
   SET_TWEETS = "/tweets/SET_TWEETS",
   FETCH_TWEETS = "/tweets/FETCH_TWEETS",
   CHANGE_STATUS = "/tweets/CHANGE_STATUS",
 }
 
-export interface SetTweets extends Action<Types> {
-  type: Types.SET_TWEETS;
-  payload: State["items"];
+export interface ISetTweets extends Action<ETypes> {
+  type: ETypes.SET_TWEETS;
+  payload: IState["items"];
 }
 
-export interface FetchTweets extends Action<Types> {
-  type: Types.FETCH_TWEETS;
-}
-// TODO: изменение статуса можно сделать в виде хука
-export interface ChangeStatus extends Action<Types> {
-  type: Types.CHANGE_STATUS;
-  payload: Status;
+export interface IFetchTweets extends Action<ETypes> {
+  type: ETypes.FETCH_TWEETS;
 }
 
-export type Actions = SetTweets | ChangeStatus;
+export interface IChangeStatus extends Action<ETypes> {
+  type: ETypes.CHANGE_STATUS;
+  payload: EStatus;
+}
+
+export type TAction = ISetTweets | IChangeStatus;

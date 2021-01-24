@@ -1,13 +1,18 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { all } from "redux-saga/effects";
 import createSagaMiddleware from "redux-saga";
 
-import rootSaga from "./saga";
-import { tweetsReducer } from "./models/Tweets";
-
-const sagaMiddleware = createSagaMiddleware();
+import { tweetsReducer } from "./models/tweets";
+import { tweetsSaga } from "./models/tweets/saga";
 
 const rootReducer = combineReducers({ tweets: tweetsReducer });
+
+function* rootSaga() {
+  yield all([tweetsSaga()]);
+}
+
+const sagaMiddleware = createSagaMiddleware();
 
 export const store = createStore(
   rootReducer,

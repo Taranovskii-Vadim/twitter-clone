@@ -1,14 +1,12 @@
-import { State as TweetsState } from "./models/Tweets/types";
+import { IState as ITweetsState } from "./models/tweets/types";
 
-export enum Status {
+export enum EStatus {
+  initial = "initial",
   loading = "loading",
   error = "error",
-  initial = "initial",
   done = "done",
 }
 
-export interface rootState {
-  tweets: TweetsState;
+export interface IRootState {
+  tweets: ITweetsState;
 }
-
-export type FixItLater = any;

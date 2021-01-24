@@ -1,16 +1,21 @@
-import { Status } from "../../types";
-import { FetchTweets, SetTweets, State, Types, ChangeStatus } from "./types";
+import { EStatus } from "../../types";
 
-export const setTweets = (payload: State["items"]): SetTweets => ({
-  type: Types.SET_TWEETS,
+import {
+  ETypes,
+  IChangeStatus,
+  IFetchTweets,
+  ISetTweets,
+  IState,
+} from "./types";
+
+export const setTweets = (payload: IState["items"]): ISetTweets => ({
+  type: ETypes.SET_TWEETS,
   payload,
 });
 
-export const changeStatus = (payload: Status): ChangeStatus => ({
-  type: Types.CHANGE_STATUS,
+export const changeStatus = (payload: EStatus): IChangeStatus => ({
+  type: ETypes.CHANGE_STATUS,
   payload,
 });
 
-export const fetchTweets = (): FetchTweets => ({
-  type: Types.FETCH_TWEETS,
-});
+export const fetchTweets = (): IFetchTweets => ({ type: ETypes.FETCH_TWEETS });

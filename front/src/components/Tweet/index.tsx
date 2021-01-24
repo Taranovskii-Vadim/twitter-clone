@@ -1,15 +1,15 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 
-import { Tweet as TweetType } from "../../store/models/Tweets/types";
-
 import UserAvatar from "../ui/UserAvatar";
 import TweetTools from "./components/TweetTools";
+
+import { ITweet } from "../../store/models/tweets/types";
 
 import { useStyles } from "./styles";
 
 interface IProps {
-  tweet: TweetType;
+  tweet: ITweet;
 }
 
 const Tweet: React.FC<IProps> = ({ tweet }): JSX.Element => {

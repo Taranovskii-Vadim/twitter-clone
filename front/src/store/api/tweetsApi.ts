@@ -1,9 +1,9 @@
 import axios from "axios";
-import { State } from "../models/Tweets/types";
+import { IState } from "../models/tweets/types";
 
 export const tweetsApi = {
-  async fetchData(): Promise<State["items"]> {
-    const data = await axios.get("https://jsonplaceholder.typicode.com/todos");
+  async fetchData(): Promise<IState["items"]> {
+    await axios.get("https://jsonplaceholder.typicode.com/todos");
     return [
       {
         id: "600aed5a16f05d452aef2590",

@@ -1,8 +1,10 @@
 import { createSelector } from "reselect";
-import { rootState } from "../../types";
-import { State } from "./types";
 
-const getBase = (state: rootState): State => state.tweets;
+import { IRootState } from "../../types";
+
+import { IState } from "./types";
+
+const getBase = (state: IRootState): IState => state.tweets;
 
 export const selectTweets = createSelector(getBase, state => state.items);
 
