@@ -1,14 +1,16 @@
 import React from "react";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import { Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Typography from "@material-ui/core/Typography";
+import Paper from "@material-ui/core/Paper";
 
 import TweetForm from "../../../../components/TweetForm";
 import SeparateLine from "../../../../components/ui/SeparateLine";
 import Tweet from "../../../../components/Tweet";
 
-import { EStatus as tweetsStatus } from "../../../../store/types";
+import { EStatus as TweetsStatus } from "../../../../store/types";
 import { fetchTweets } from "../../../../store/models/tweets/actions";
 import {
   selectStatus,
@@ -36,13 +38,18 @@ const MainContent: React.FC = (): JSX.Element => {
       </Typography>
       <TweetForm />
       <SeparateLine />
-      {status === tweetsStatus.loading ? (
-        <div style={{ textAlign: "center" }}>
-          <CircularProgress />
-        </div>
-      ) : (
-        tweets.map(item => <Tweet key={item.id} tweet={item} />)
-      )}
+      <Switch>
+        <Route path='/home'>
+          {status === TweetsStatus.loading ? (
+            <div style={{ textAlign: "center" }}>
+              <CircularProgress />
+            </div>
+          ) : (
+            tweets.map(item => <Tweet key={item.id} tweet={item} />)
+          )}
+        </Route>
+        <Route path='/search' render={() => <p>Search</p>} />
+      </Switch>
     </Paper>
   );
 };
