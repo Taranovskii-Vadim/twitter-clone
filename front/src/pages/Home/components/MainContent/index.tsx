@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
+import IconButton from "@material-ui/core/IconButton";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 import TweetForm from "../../../../components/TweetForm";
 import SeparateLine from "../../../../components/ui/SeparateLine";
@@ -33,13 +35,29 @@ const MainContent: React.FC = (): JSX.Element => {
 
   return (
     <Paper className={styles.wrapper}>
-      <Typography variant='h6' className={styles.header}>
-        Главная
-      </Typography>
-      <TweetForm />
-      <SeparateLine />
+      <Route path='/home/:id'>
+        <div className={styles.headerBtn}>
+          <IconButton size='small' style={{ marginRight: 15 }} color='primary'>
+            <ArrowBackIcon />
+          </IconButton>
+          <Typography variant='h6' className={styles.title}>
+            Твитнуть
+          </Typography>
+        </div>
+      </Route>
+      <Route path={["/home", "/search"]} exact>
+        <div className={styles.header}>
+          <Typography variant='h6' className={styles.title}>
+            Главная
+          </Typography>
+        </div>
+      </Route>
+      <Route path={["/home"]} exact>
+        <TweetForm />
+        <SeparateLine />
+      </Route>
       <Switch>
-        <Route path='/home'>
+        <Route exact path='/home'>
           {status === TweetsStatus.loading ? (
             <div style={{ textAlign: "center" }}>
               <CircularProgress />

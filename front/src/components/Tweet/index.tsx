@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 
 import UserAvatar from "../ui/UserAvatar";
@@ -14,8 +15,9 @@ interface IProps {
 
 const Tweet: React.FC<IProps> = ({ tweet }): JSX.Element => {
   const styles = useStyles();
+
   return (
-    <div className={styles.root}>
+    <Link to={`/home/${tweet.id}`} className={styles.root}>
       <div className={styles.avatarBlock}>
         <UserAvatar url={tweet.user.avatarUrl} size='small' />
       </div>
@@ -26,7 +28,7 @@ const Tweet: React.FC<IProps> = ({ tweet }): JSX.Element => {
         <Typography className={styles.message}>{tweet.text}</Typography>
         <TweetTools />
       </div>
-    </div>
+    </Link>
   );
 };
 

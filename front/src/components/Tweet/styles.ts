@@ -5,6 +5,8 @@ export const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     cursor: "pointer",
+    color: "inherit",
+    textDecoration: "none",
     padding: "5px 10px",
     borderBottom: `1px solid ${grey[300]}`,
     transition: "all 0.2s linear",
