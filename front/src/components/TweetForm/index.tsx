@@ -9,7 +9,6 @@ import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import UserAvatar from "../ui/UserAvatar";
 
 import { MAX_TEXTAREA_LENGTH } from "./constants";
-import { getRandomPlaceholder } from "./helpers";
 
 import { useStyles } from "./styles";
 
@@ -45,7 +44,7 @@ const TweetForm: React.FC<IProps> = ({ padding }): JSX.Element => {
           onChange={onChangeNewsHandler}
           value={news}
           rowsMin={4}
-          placeholder={getRandomPlaceholder()}
+          placeholder='Что нового?'
         />
         <div className={styles.rootFormFooter}>
           <div className={styles.rootFormFooterItem}>
