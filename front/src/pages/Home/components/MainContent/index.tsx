@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
-import IconButton from "@material-ui/core/IconButton";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 import TweetForm from "../../../../components/TweetForm";
 import SeparateLine from "../../../../components/ui/SeparateLine";
+import BackButton from "../../../../components/ui/BackButton";
 import Tweet from "../../../../components/Tweet";
+import FullTweet from "../../../../components/FullTweet";
 
 import { EStatus as TweetsStatus } from "../../../../store/types";
 import { fetchTweets } from "../../../../store/models/tweets/actions";
@@ -37,13 +37,12 @@ const MainContent: React.FC = (): JSX.Element => {
     <Paper className={styles.wrapper}>
       <Route path='/home/:id'>
         <div className={styles.headerBtn}>
-          <IconButton size='small' style={{ marginRight: 15 }} color='primary'>
-            <ArrowBackIcon />
-          </IconButton>
+          <BackButton />
           <Typography variant='h6' className={styles.title}>
             Твитнуть
           </Typography>
         </div>
+        <FullTweet />
       </Route>
       <Route path={["/home", "/search"]} exact>
         <div className={styles.header}>
@@ -51,8 +50,6 @@ const MainContent: React.FC = (): JSX.Element => {
             Главная
           </Typography>
         </div>
-      </Route>
-      <Route path={["/home"]} exact>
         <TweetForm />
         <SeparateLine />
       </Route>
