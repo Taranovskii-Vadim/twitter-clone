@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import UserAvatar from "../ui/UserAvatar";
 import TweetTools from "./components/TweetTools";
 
-import { ITweet } from "../../store/models/tweets/types";
+import { ITweet } from "../../store/models/tweet/types";
 
 import { useStyles } from "./styles";
 

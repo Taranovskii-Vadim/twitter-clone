@@ -2,19 +2,9 @@ import { Action } from "redux";
 
 import { EStatus } from "../../types";
 
+import { ITweet } from "../tweet/types";
+
 // data
-
-interface IUser {
-  name: string;
-  nickname: string;
-  avatarUrl: string;
-}
-
-export interface ITweet {
-  readonly id: string;
-  text: string;
-  user: IUser;
-}
 
 export interface IState {
   items: ITweet[];
