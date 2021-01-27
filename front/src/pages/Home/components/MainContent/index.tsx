@@ -12,10 +12,9 @@ import BackButton from "../../../../components/ui/BackButton";
 import Tweet from "../../../../components/Tweet";
 import FullTweet from "../../../../components/FullTweet";
 
-import { EStatus as TweetsStatus } from "../../../../store/types";
 import { fetchTweets } from "../../../../store/models/tweets/actions";
 import {
-  selectStatus,
+  selectStatusLoading,
   selectTweets,
 } from "../../../../store/models/tweets/selectors";
 
@@ -27,7 +26,7 @@ const MainContent: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
 
   const tweets = useSelector(selectTweets);
-  const status = useSelector(selectStatus);
+  const isLoading = useSelector(selectStatusLoading);
 
   React.useEffect(() => {
     dispatch(fetchTweets());
@@ -55,7 +54,7 @@ const MainContent: React.FC = (): JSX.Element => {
       </Route>
       <Switch>
         <Route exact path='/home'>
-          {status === TweetsStatus.loading ? (
+          {isLoading ? (
             <div style={{ textAlign: "center" }}>
               <CircularProgress />
             </div>

@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import { EStatus } from "../../types";
+import { TStatus } from "../../types";
 
 // data
 
@@ -17,7 +17,7 @@ export interface ITweet {
 
 export interface IState {
   tweet: ITweet | undefined;
-  status: EStatus;
+  status: TStatus;
 }
 
 // actions
@@ -25,7 +25,7 @@ export interface IState {
 export enum ETypes {
   FETCH_TWEET = "/tweet/FETCH_TWEET",
   SET_TWEET = "/tweet/SET_TWEET",
-  CHANGE_STATUS = "/tweets/CHANGE_STATUS",
+  CHANGE_STATUS = "/tweet/CHANGE_STATUS",
 }
 
 export interface IFetchTweet extends Action<ETypes> {
@@ -40,7 +40,7 @@ export interface ISetTweet extends Action<ETypes> {
 
 export interface IChangeStatus extends Action<ETypes> {
   type: ETypes.CHANGE_STATUS;
-  payload: EStatus;
+  payload: TStatus;
 }
 
 export type TAction = ISetTweet | IChangeStatus;

@@ -1,4 +1,4 @@
-import { EStatus } from "../../types";
+import { TStatus } from "../../types";
 
 import {
   ETypes,
@@ -13,7 +13,7 @@ export const setTweets = (payload: IState["items"]): ISetTweets => ({
   payload,
 });
 
-export const changeStatus = (payload: EStatus): IChangeStatus => ({
+export const changeStatus = (payload: TStatus): IChangeStatus => ({
   type: ETypes.CHANGE_STATUS,
   payload,
 });

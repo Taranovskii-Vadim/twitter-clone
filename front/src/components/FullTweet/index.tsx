@@ -7,7 +7,6 @@ import {
   selectIsLoading,
   selectTweet,
 } from "../../store/models/tweet/selectors";
-import { EStatus } from "../../store/types";
 
 import Tweet from "../Tweet";
 

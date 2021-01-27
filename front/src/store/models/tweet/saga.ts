@@ -1,17 +1,16 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { tweetsApi } from "../../api/tweetsApi";
-import { EStatus } from "../../types";
 import { changeStatus, setTweet } from "./actions";
 import { ETypes, IFetchTweet, IState } from "./types";
 
 function* getTweet({ payload }: IFetchTweet) {
   try {
-    // yield put(changeStatus(EStatus.loading));
+    yield put(changeStatus("loading"));
     const data: IState["tweet"] = yield call(tweetsApi.fetchTweet, payload);
     yield put(setTweet(data));
   } catch (e) {
     //   TODO: Сатвить статус в error
-    console.log(e);
+    yield put(changeStatus("error"));
   }
 }
 
