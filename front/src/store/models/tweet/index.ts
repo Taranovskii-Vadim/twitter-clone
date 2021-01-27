@@ -11,5 +11,8 @@ const initialState: IState = {
 export const tweetReducer = produce((draft: Draft<IState>, action: TAction) => {
   if (action.type === ETypes.SET_TWEET) {
     draft.tweet = action.payload;
+    draft.status = EStatus.done;
+  } else if (action.type === ETypes.CHANGE_STATUS) {
+    draft.status = action.payload;
   }
 }, initialState);
