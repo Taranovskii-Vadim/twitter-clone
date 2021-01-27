@@ -9,7 +9,6 @@ function* getTweet({ payload }: IFetchTweet) {
     const data: IState["tweet"] = yield call(tweetsApi.fetchTweet, payload);
     yield put(setTweet(data));
   } catch (e) {
-    //   TODO: Сатвить статус в error
     yield put(changeStatus("error"));
   }
 }

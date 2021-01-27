@@ -31,7 +31,7 @@ const MainContent: React.FC = (): JSX.Element => {
   React.useEffect(() => {
     dispatch(fetchTweets());
   }, []);
-
+  // TODO: Сделать роут для поиска
   return (
     <Paper className={styles.wrapper}>
       <Route path='/home/:id'>

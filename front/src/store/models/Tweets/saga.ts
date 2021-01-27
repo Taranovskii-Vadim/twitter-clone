@@ -6,9 +6,13 @@ import { changeStatus, setTweets } from "./actions";
 import { ETypes } from "./types";
 
 function* getTweets() {
-  yield put(changeStatus("loading"));
-  const data = yield call(tweetsApi.fetchData);
-  yield put(setTweets(data));
+  try {
+    yield put(changeStatus("loading"));
+    const data = yield call(tweetsApi.fetchData);
+    yield put(setTweets(data));
+  } catch (e) {
+    yield put(changeStatus("error"));
+  }
 }
 
 export function* tweetsSaga() {
