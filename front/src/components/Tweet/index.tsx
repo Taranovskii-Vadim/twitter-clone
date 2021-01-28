@@ -15,7 +15,7 @@ interface IProps {
 
 const Tweet: React.FC<IProps> = ({ tweet }): JSX.Element => {
   const styles = useStyles();
-
+  // ! по нажатии на кнопку происходит переход по ссылке
   return (
     <Link to={`/home/${tweet.id}`} className={styles.root}>
       <div className={styles.avatarBlock}>
@@ -25,7 +25,7 @@ const Tweet: React.FC<IProps> = ({ tweet }): JSX.Element => {
         <Typography className={styles.userInfo}>
           {tweet.user.name} <small>{tweet.user.nickname} час назад</small>
         </Typography>
-        <Typography className={styles.message}>{tweet.text}</Typography>
+        <Typography>{tweet.text}</Typography>
         <TweetTools />
       </div>
     </Link>

@@ -27,7 +27,4 @@ export const useStyles = makeStyles(theme => ({
       color: grey[500],
     },
   },
-  message: {
-    margin: 0,
-  },
 }));
