@@ -3,14 +3,10 @@ import { Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 
-import TweetForm from "../../../../components/TweetForm";
-import SeparateLine from "../../../../components/ui/SeparateLine";
-import BackButton from "../../../../components/ui/BackButton";
 import Tweet from "../../../../components/Tweet";
-import FullTweet from "../../../../components/FullTweet";
+import ContentTitle from "./components/ContentTitle";
 
 import { fetchTweets } from "../../../../store/models/tweets/actions";
 import {
@@ -31,27 +27,10 @@ const MainContent: React.FC = (): JSX.Element => {
   React.useEffect(() => {
     dispatch(fetchTweets());
   }, []);
-  // TODO: Сделать роут для поиска
+
   return (
     <Paper className={styles.wrapper}>
-      <Route path='/home/:id'>
-        <div className={styles.headerBtn}>
-          <BackButton />
-          <Typography variant='h6' className={styles.title}>
-            Твитнуть
-          </Typography>
-        </div>
-        <FullTweet />
-      </Route>
-      <Route path={["/home", "/search"]} exact>
-        <div className={styles.header}>
-          <Typography variant='h6' className={styles.title}>
-            Главная
-          </Typography>
-        </div>
-        <TweetForm />
-        <SeparateLine />
-      </Route>
+      <ContentTitle />
       <Switch>
         <Route exact path='/home'>
           {isLoading ? (
