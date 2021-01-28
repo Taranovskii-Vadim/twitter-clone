@@ -26,6 +26,6 @@ export const CustomInput = withStyles(theme =>
 export const useStyles = makeStyles(theme => ({
   wrapper: {
     position: "sticky",
-    top: 12,
+    top: 10,
   },
 }));
