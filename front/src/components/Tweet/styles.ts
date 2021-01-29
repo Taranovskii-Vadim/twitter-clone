@@ -4,20 +4,32 @@ import grey from "@material-ui/core/colors/grey";
 export const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
+    flexDirection: "column",
     cursor: "pointer",
-    color: "inherit",
-    textDecoration: "none",
     padding: "5px 10px",
     borderBottom: `1px solid ${grey[300]}`,
     transition: "all 0.2s linear",
+    "& a": {
+      textDecoration: "none",
+      color: "inherit",
+    },
     "&:hover": {
       backgroundColor: grey[100],
     },
   },
-  rootAvatar: {
+  rootHeader: {
     display: "flex",
-    alignItems: "top",
+    marginBottom: 10,
+  },
+  rootAvatar: {
     marginRight: 15,
+  },
+  rootText: {
+    marginBottom: 10,
+  },
+  rootPicture: {
+    width: "100%",
+    borderRadius: 10,
   },
   rootUser: {
     fontSize: 15,
@@ -29,7 +41,6 @@ export const useStyles = makeStyles(theme => ({
   },
   rootFooter: {
     display: "flex",
-    width: "90%",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
   },
 }));

@@ -1,4 +1,5 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
@@ -16,25 +17,45 @@ interface IProps {
   padding?: string | number;
 }
 
+interface IFields {
+  tweetText: string;
+}
+
 const TweetForm: React.FC<IProps> = ({ padding }): JSX.Element => {
   const styles = useStyles();
-  const [news, setNews] = React.useState<string>("");
-  const newsPercent = (news.length * 100) / MAX_TEXTAREA_LENGTH;
+  const { register, setValue, handleSubmit, watch } = useForm<IFields>();
 
-  const isLimit = news.length >= MAX_TEXTAREA_LENGTH;
+  const tweetText = watch("tweetText", "");
+
+  const newsPercent = (tweetText.length * 100) / MAX_TEXTAREA_LENGTH;
+
+  const isLimit = tweetText.length >= MAX_TEXTAREA_LENGTH;
 
   const CircularProgressStyle = {
     marginLeft: 10,
     color: isLimit ? "red" : "",
   };
 
+  React.useEffect(() => {
+    register("tweetText", { required: true });
+  }, [register]);
+
+  const onSubmit = (data: IFields) => {
+    console.log(data);
+    setValue("tweetText", "");
+  };
+
   const onChangeNewsHandler = (e: React.FormEvent<HTMLTextAreaElement>) => {
     const value = e.currentTarget.value;
-    setNews(value);
+    setValue("tweetText", value);
   };
 
   return (
-    <div style={{ padding }} className={styles.root}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      style={{ padding }}
+      className={styles.root}
+    >
       <div className={styles.avatarBlock}>
         <UserAvatar size='small' />
       </div>
@@ -42,7 +63,7 @@ const TweetForm: React.FC<IProps> = ({ padding }): JSX.Element => {
         <TextareaAutosize
           className={styles.rootTextArea}
           onChange={onChangeNewsHandler}
-          value={news}
+          value={tweetText}
           rowsMin={4}
           placeholder='Что нового?'
         />
@@ -56,10 +77,12 @@ const TweetForm: React.FC<IProps> = ({ padding }): JSX.Element => {
             </IconButton>
           </div>
           <div className={styles.rootFormFooterItem}>
-            {news ? (
+            {tweetText ? (
               <>
                 <span>
-                  {isLimit ? MAX_TEXTAREA_LENGTH - news.length : news.length}
+                  {isLimit
+                    ? MAX_TEXTAREA_LENGTH - tweetText.length
+                    : tweetText.length}
                 </span>
                 <CircularProgress
                   style={CircularProgressStyle}
@@ -71,6 +94,7 @@ const TweetForm: React.FC<IProps> = ({ padding }): JSX.Element => {
             ) : null}
             <Button
               className={styles.rootFormFooterBtn}
+              type='submit'
               disabled={isLimit}
               size='small'
               variant='contained'
@@ -81,7 +105,7 @@ const TweetForm: React.FC<IProps> = ({ padding }): JSX.Element => {
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 
