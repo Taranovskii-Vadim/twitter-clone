@@ -14,17 +14,22 @@ export const useStyles = makeStyles(theme => ({
       backgroundColor: grey[100],
     },
   },
-  avatarBlock: {
+  rootAvatar: {
     display: "flex",
     alignItems: "top",
     marginRight: 15,
   },
-  userInfo: {
+  rootUser: {
     fontSize: 15,
     fontWeight: 900,
     "& small": {
       fontWeight: 400,
       color: grey[500],
     },
+  },
+  rootFooter: {
+    display: "flex",
+    width: "90%",
+    justifyContent: "space-between",
   },
 }));
