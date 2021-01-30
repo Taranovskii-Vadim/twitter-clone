@@ -1,11 +1,11 @@
 const { Router } = require("express");
-const Tweet = require("../models/tweet");
+const Tag = require("../models/tag");
 
 const router = Router();
 
 router.get("/", async (req, res) => {
-  const data = await Tweet.getData();
-  res.status(200).json(data);
+  const data = await Tag.getData();
+  res.json(data);
 });
 
 module.exports = router;

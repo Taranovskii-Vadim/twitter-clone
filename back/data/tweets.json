@@ -1,58 +1,56 @@
-{
-  "tweets": [
-    {
-      "id": "600aed5a16f05d452aef2590",
-      "text": "elit Lorem aliqua officia consectetur consequat eiusmod reprehenderit eiusmod cillumelit Lorem aliqua officia consectetur consequat eiusmod reprehenderit eiusmod cillumelit Lorem aliqua officia consectetur consequat eiusmod reprehenderit eiusmod cillumelit Lorem aliqua officia consectetur consequat eiusmod reprehenderit eiusmod cillum",
-      "user": {
-        "name": "Diann Richard",
-        "nickname": "@Perez",
-        "avatarUrl": "https://img1.goodfon.ru/original/3830x2550/d/48/nastroeniya-devushka-ulybka-3172.jpg"
-      }
-    },
-    {
-      "id": "600aed5a1d7798e03da852cc",
-      "text": "aliquip ex esse ullamco aliqua ex mollit duis pariatur eiusmod",
-      "user": {
-        "name": "Althea Carey",
-        "nickname": "@Blanchard",
-        "avatarUrl": "https://img1.goodfon.ru/original/3830x2550/d/48/nastroeniya-devushka-ulybka-3172.jpg"
-      }
-    },
-    {
-      "id": "600aed5ae8f29bf86ea59c7c",
-      "text": "ad occaecat consectetur enim duis ut proident dolore aliqua officia",
-      "user": {
-        "name": "Mayer Monroe",
-        "nickname": "@Hamilton",
-        "avatarUrl": "https://img1.goodfon.ru/original/3830x2550/d/48/nastroeniya-devushka-ulybka-3172.jpg"
-      }
-    },
-    {
-      "id": "600aed5aa2f7d12f74c470c1",
-      "text": "non nulla culpa et magna aute voluptate deserunt laborum Lorem",
-      "user": {
-        "name": "Helga Allen",
-        "nickname": "@Guadalupe",
-        "avatarUrl": "https://img1.goodfon.ru/original/3830x2550/d/48/nastroeniya-devushka-ulybka-3172.jpg"
-      }
-    },
-    {
-      "id": "600aed5a85f2e16cb03f5811",
-      "text": "ullamco commodo aute eiusmod ea irure non commodo commodo enim",
-      "user": {
-        "name": "Janice Glass",
-        "nickname": "@Deidre",
-        "avatarUrl": "https://img1.goodfon.ru/original/3830x2550/d/48/nastroeniya-devushka-ulybka-3172.jpg"
-      }
-    },
-    {
-      "id": "600aed5a12f05d452aef2678",
-      "text": "Привет это я давно не виделись дорогие друзья",
-      "user": {
-        "name": "Vadim",
-        "nickname": "@ПiчэнькО",
-        "avatarUrl": "https://twizz.ru/wp-content/uploads/2020/10/1601624395_8c7dd922ad47494fc02c388e12c00eac.jpg"
-      }
+[
+  {
+    "id": "600aed5a16f05d452aef2590",
+    "text": "elit Lorem aliqua officia consectetur consequat eiusmod reprehenderit eiusmod cillumelit Lorem aliqua officia consectetur consequat eiusmod reprehenderit eiusmod cillumelit Lorem aliqua officia consectetur consequat eiusmod reprehenderit eiusmod cillumelit Lorem aliqua officia consectetur consequat eiusmod reprehenderit eiusmod cillum",
+    "user": {
+      "name": "Diann Richard",
+      "nickname": "@Perez",
+      "avatarUrl": "https://img1.goodfon.ru/original/3830x2550/d/48/nastroeniya-devushka-ulybka-3172.jpg"
     }
-  ]
-}
+  },
+  {
+    "id": "600aed5a1d7798e03da852cc",
+    "text": "aliquip ex esse ullamco aliqua ex mollit duis pariatur eiusmod",
+    "user": {
+      "name": "Althea Carey",
+      "nickname": "@Blanchard",
+      "avatarUrl": "https://img1.goodfon.ru/original/3830x2550/d/48/nastroeniya-devushka-ulybka-3172.jpg"
+    }
+  },
+  {
+    "id": "600aed5ae8f29bf86ea59c7c",
+    "text": "ad occaecat consectetur enim duis ut proident dolore aliqua officia",
+    "user": {
+      "name": "Mayer Monroe",
+      "nickname": "@Hamilton",
+      "avatarUrl": "https://img1.goodfon.ru/original/3830x2550/d/48/nastroeniya-devushka-ulybka-3172.jpg"
+    }
+  },
+  {
+    "id": "600aed5aa2f7d12f74c470c1",
+    "text": "non nulla culpa et magna aute voluptate deserunt laborum Lorem",
+    "user": {
+      "name": "Helga Allen",
+      "nickname": "@Guadalupe",
+      "avatarUrl": "https://img1.goodfon.ru/original/3830x2550/d/48/nastroeniya-devushka-ulybka-3172.jpg"
+    }
+  },
+  {
+    "id": "600aed5a85f2e16cb03f5811",
+    "text": "ullamco commodo aute eiusmod ea irure non commodo commodo enim",
+    "user": {
+      "name": "Janice Glass",
+      "nickname": "@Deidre",
+      "avatarUrl": "https://img1.goodfon.ru/original/3830x2550/d/48/nastroeniya-devushka-ulybka-3172.jpg"
+    }
+  },
+  {
+    "id": "600aed5a12f05d452aef2678",
+    "text": "Привет это я давно не виделись дорогие друзья",
+    "user": {
+      "name": "Vadim",
+      "nickname": "@ПiчэнькО",
+      "avatarUrl": "https://twizz.ru/wp-content/uploads/2020/10/1601624395_8c7dd922ad47494fc02c388e12c00eac.jpg"
+    }
+  }
+]
