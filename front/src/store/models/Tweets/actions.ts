@@ -1,9 +1,12 @@
 import { TStatus } from "../../types";
+import { ITweet } from "../tweet/types";
 
 import {
   ETypes,
+  IAddTweet,
   IChangeStatus,
   IFetchTweets,
+  ISetTweet,
   ISetTweets,
   IState,
 } from "./types";
@@ -13,8 +16,18 @@ export const setTweets = (payload: IState["items"]): ISetTweets => ({
   payload,
 });
 
+export const setTweet = (payload: ITweet): ISetTweet => ({
+  type: ETypes.SET_TWEET,
+  payload,
+});
+
 export const changeStatus = (payload: TStatus): IChangeStatus => ({
   type: ETypes.CHANGE_STATUS,
+  payload,
+});
+
+export const addTweet = (payload: string): IAddTweet => ({
+  type: ETypes.ADD_TWEET,
   payload,
 });
 

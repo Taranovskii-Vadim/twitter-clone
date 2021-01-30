@@ -28,13 +28,15 @@ const Tweet: React.FC<IProps> = ({ tweet }): JSX.Element => {
           </Typography>
         </div>
         <Typography className={styles.rootText}>{tweet.text}</Typography>
-        <img
-          className={styles.rootPicture}
-          src='https://img1.goodfon.ru/original/3830x2550/d/48/nastroeniya-devushka-ulybka-3172.jpg'
-        />
+        {tweet.imageUrl ? (
+          <img
+            className={styles.rootPicture}
+            src='https://img1.goodfon.ru/original/3830x2550/d/48/nastroeniya-devushka-ulybka-3172.jpg'
+          />
+        ) : null}
       </Link>
       <div className={styles.rootFooter}>
-        <TweetTools />
+        <TweetTools color='primary' />
       </div>
     </div>
   );

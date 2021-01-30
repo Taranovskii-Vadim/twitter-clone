@@ -12,6 +12,7 @@ interface IUser {
 export interface ITweet {
   readonly id: string;
   text: string;
+  imageUrl?: string;
   user: IUser;
 }
 

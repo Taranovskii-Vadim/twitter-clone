@@ -18,7 +18,7 @@ const UserAvatar: React.FC<AvatarProps> = ({ size, url }): JSX.Element => {
       src={
         url
           ? url
-          : "https://img1.goodfon.ru/original/3830x2550/d/48/nastroeniya-devushka-ulybka-3172.jpg"
+          : "https://yt3.ggpht.com/a/AATXAJxfhf3kbn0w0USsJ25Srf3KLKEXpHNX0zO4Wg=s900-c-k-c0xffffffff-no-rj-mo"
       }
     />
   );

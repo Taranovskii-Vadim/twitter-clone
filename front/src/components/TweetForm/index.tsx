@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import Button from "@material-ui/core/Button";
@@ -9,6 +10,7 @@ import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 
 import UserAvatar from "../ui/UserAvatar";
 
+import { addTweet } from "../../store/models/tweets/actions";
 import { MAX_TEXTAREA_LENGTH } from "./constants";
 
 import { useStyles } from "./styles";
@@ -24,6 +26,7 @@ interface IFields {
 const TweetForm: React.FC<IProps> = ({ padding }): JSX.Element => {
   const styles = useStyles();
   const { register, setValue, handleSubmit, watch } = useForm<IFields>();
+  const dispatch = useDispatch();
 
   const tweetText = watch("tweetText", "");
 
@@ -41,7 +44,7 @@ const TweetForm: React.FC<IProps> = ({ padding }): JSX.Element => {
   }, [register]);
 
   const onSubmit = (data: IFields) => {
-    console.log(data);
+    dispatch(addTweet(data.tweetText));
     setValue("tweetText", "");
   };
 
@@ -57,7 +60,10 @@ const TweetForm: React.FC<IProps> = ({ padding }): JSX.Element => {
       className={styles.root}
     >
       <div className={styles.avatarBlock}>
-        <UserAvatar size='small' />
+        <UserAvatar
+          size='small'
+          url='https://twizz.ru/wp-content/uploads/2020/10/1601624395_8c7dd922ad47494fc02c388e12c00eac.jpg'
+        />
       </div>
       <div className={styles.rootFormBlock}>
         <TextareaAutosize

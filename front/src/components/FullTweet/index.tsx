@@ -48,11 +48,13 @@ const FullTweet: React.FC = (): JSX.Element => {
           </Typography>
         </div>
         <Typography className={styles.rootText}>{tweet.text}</Typography>
-        <img
-          className={styles.rootPicture}
-          src='https://img1.goodfon.ru/original/3830x2550/d/48/nastroeniya-devushka-ulybka-3172.jpg'
-          alt='test'
-        />
+        {tweet.imageUrl ? (
+          <img
+            className={styles.rootPicture}
+            src='https://img1.goodfon.ru/original/3830x2550/d/48/nastroeniya-devushka-ulybka-3172.jpg'
+            alt='test'
+          />
+        ) : null}
         <Typography className={styles.rootTime}>
           6:31 PM 12 сент. 2015 г.
         </Typography>
@@ -65,7 +67,7 @@ const FullTweet: React.FC = (): JSX.Element => {
           </Typography>
         </div>
         <div className={styles.rootFooter}>
-          <TweetTools />
+          <TweetTools color='inherit' />
         </div>
       </div>
     );

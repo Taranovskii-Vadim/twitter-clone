@@ -12,6 +12,8 @@ export const tweetsReducer = produce(
     if (action.type === ETypes.SET_TWEETS) {
       draft.items = action.payload;
       draft.status = "done";
+    } else if (action.type === ETypes.SET_TWEET) {
+      draft.items.unshift(action.payload);
     } else if (action.type === ETypes.CHANGE_STATUS) {
       draft.status = action.payload;
     }
