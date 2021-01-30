@@ -9,8 +9,8 @@ export const tweetsApi = {
     return await response.data;
   },
   async fetchTweet(id: string): Promise<ITweetState["tweet"]> {
-    const response = await axios.get(`/tweets?id=${id}`);
-    return await response.data[0];
+    const response = await axios.get(`/tweets/${id}`);
+    return await response.data;
   },
   async addTweet(text: string): Promise<ITweet> {
     const data = {
