@@ -2,7 +2,7 @@ import { IState as ITweetsState } from "./models/tweets/types";
 import { IState as ITagsState } from "./models/tags/types";
 import { IState as ITweetState } from "./models/tweet/types";
 
-export type TStatus = "initial" | "loading" | "error" | "done";
+export type TStatus = "initial" | "loading" | "error";
 
 export interface IRootState {
   tweets: ITweetsState;
