@@ -19,11 +19,11 @@ router.get("/:id", async (req, res) => {
     if (tweet) {
       res.status(200).json(tweet);
     } else {
-      res.status(404);
+      res.status(404).send("Данного твита не существует");
     }
   } catch (e) {
     console.log(e);
-    res.status(500);
+    res.status(500).send("Произошла неизвестная ошибка");
   }
 });
 

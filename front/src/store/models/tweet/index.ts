@@ -12,6 +12,9 @@ export const tweetReducer = produce((draft: Draft<IState>, action: TAction) => {
     draft.tweet = action.payload;
     draft.status = "initial";
   } else if (action.type === ETypes.CHANGE_STATUS) {
-    draft.status = action.payload;
+    if (action.payload.message) {
+      draft.message = action.payload.message;
+    }
+    draft.status = action.payload.status;
   }
 }, initialState);

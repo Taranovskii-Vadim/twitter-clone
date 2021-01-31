@@ -17,8 +17,9 @@ export interface ITweet {
 }
 
 export interface IState {
-  tweet: ITweet | undefined;
+  tweet?: ITweet;
   status: TStatus;
+  message?: string;
 }
 
 // actions
@@ -41,7 +42,10 @@ export interface ISetTweet extends Action<ETypes> {
 
 export interface IChangeStatus extends Action<ETypes> {
   type: ETypes.CHANGE_STATUS;
-  payload: TStatus;
+  payload: {
+    status: TStatus;
+    message?: string;
+  };
 }
 
 export type TAction = ISetTweet | IChangeStatus;

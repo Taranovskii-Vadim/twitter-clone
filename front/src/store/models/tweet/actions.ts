@@ -11,7 +11,13 @@ export const setTweet = (payload: IState["tweet"]): ISetTweet => ({
   payload,
 });
 
-export const changeStatus = (payload: TStatus): IChangeStatus => ({
+export const changeStatus = (
+  status: TStatus,
+  message?: string
+): IChangeStatus => ({
   type: ETypes.CHANGE_STATUS,
-  payload,
+  payload: {
+    status,
+    message,
+  },
 });

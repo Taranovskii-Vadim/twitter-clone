@@ -1,24 +1,34 @@
 import React from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Alert from "@material-ui/lab/Alert";
+import Snackbar from "@material-ui/core/Snackbar";
+import Typography from "@material-ui/core/Typography";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+
+import UserAvatar from "../ui/UserAvatar";
+import TweetTools from "../TweetTools";
+import EmptyData from "../EmptyData";
+
 import { fetchTweet, setTweet } from "../../store/models/tweet/actions";
 import {
-  selectIsLoading,
+  selectStatus,
   selectTweet,
+  selectMessage,
 } from "../../store/models/tweet/selectors";
 
 import { useStyles } from "./styles";
-import UserAvatar from "../ui/UserAvatar";
-import Typography from "@material-ui/core/Typography";
-import TweetTools from "../TweetTools";
 
 const FullTweet: React.FC = (): JSX.Element => {
   const styles = useStyles();
+
   const params: { id: string } = useParams();
   const dispatch = useDispatch();
   const tweet = useSelector(selectTweet);
-  const isLoading = useSelector(selectIsLoading);
+  const status = useSelector(selectStatus);
+  const message = useSelector(selectMessage);
+
+  const isLoading = status === "loading";
 
   React.useEffect(() => {
     dispatch(fetchTweet(params.id));
@@ -26,6 +36,10 @@ const FullTweet: React.FC = (): JSX.Element => {
       dispatch(setTweet(undefined));
     };
   }, [dispatch, params.id]);
+
+  if (message) {
+    return <EmptyData message={message} />;
+  }
 
   if (isLoading) {
     return (

@@ -30,15 +30,6 @@ const MainContent: React.FC = (): JSX.Element => {
   const message = useSelector(selectMessage);
 
   const isLoading = status === "loading";
-  const isError = status === "error";
-
-  const [isMessage, setIsMessage] = React.useState(false);
-
-  React.useEffect(() => {
-    if (isError) {
-      setIsMessage(true);
-    }
-  }, [status]);
 
   React.useEffect(() => {
     dispatch(fetchTweets());
@@ -60,14 +51,6 @@ const MainContent: React.FC = (): JSX.Element => {
               message={message ? message : "Добавьте свой первый твит!!!"}
             />
           )}
-          <Snackbar
-            anchorOrigin={{ vertical: "top", horizontal: "right" }}
-            autoHideDuration={3000}
-            open={isMessage}
-            onClose={() => setIsMessage(false)}
-          >
-            <Alert severity='error'>{message}</Alert>
-          </Snackbar>
         </Route>
         <Route path='/search' render={() => <p>Search</p>} />
       </Switch>

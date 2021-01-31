@@ -6,7 +6,6 @@ const getBase = (state: IRootState): IState => state.tweet;
 
 export const selectTweet = createSelector(getBase, state => state.tweet);
 
-export const selectIsLoading = createSelector(
-  getBase,
-  state => state.status === "loading"
-);
+export const selectStatus = createSelector(getBase, state => state.status);
+
+export const selectMessage = createSelector(getBase, state => state.message);
