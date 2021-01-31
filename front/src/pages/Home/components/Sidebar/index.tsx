@@ -4,10 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchTags } from "../../../../store/models/tags/actions";
 import { fetchUsers } from "../../../../store/models/users/actions";
 import {
-  selectMessage,
+  selectMessage as selectTagsMsg,
   selectTags,
 } from "../../../../store/models/tags/selectors";
-import { selectUsers } from "../../../../store/models/users/selectors";
+import {
+  selectMessage as selectUsersMsg,
+  selectUsers,
+} from "../../../../store/models/users/selectors";
 
 import Message from "../../../../components/Message";
 import FavoriteTags from "./components/FavoriteTags";
@@ -21,22 +24,30 @@ const Sidebar: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   // tags
   const tags = useSelector(selectTags);
-  const message = useSelector(selectMessage);
+  const tagsMsg = useSelector(selectTagsMsg);
 
   // users
   const users = useSelector(selectUsers);
+  const usersMsg = useSelector(selectUsersMsg);
 
   React.useEffect(() => {
     dispatch(fetchTags());
     dispatch(fetchUsers());
   }, []);
-
+  // ! Тут есть костыль, к черту Mui, Antd топ
   return (
     <div className={styles.wrapper}>
       <CustomInput placeholder='Поиск' fullWidth />
       <FavoriteTags tags={tags} />
       <Suggestions users={users} />
-      <Message message={message} />
+      {tagsMsg && usersMsg ? (
+        <Message message='Упс, что-то пошло не так' />
+      ) : (
+        <>
+          <Message message={tagsMsg} />
+          <Message message={usersMsg} />
+        </>
+      )}
     </div>
   );
 };

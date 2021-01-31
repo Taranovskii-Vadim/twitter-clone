@@ -14,6 +14,7 @@ export interface IState {
 export enum ETypes {
   FETCH_USERS = "/users/FETCH_USERS",
   SET_USERS = "/users/SET_USERS",
+  CHANGE_STATUS = '"/users/SET_USERS',
 }
 
 export interface IFetchUsers extends Action<ETypes.FETCH_USERS> {}
@@ -22,4 +23,11 @@ export interface ISetUsers extends Action<ETypes.SET_USERS> {
   payload: IState["items"];
 }
 
-export type TAction = ISetUsers;
+export interface IChangeStatus extends Action<ETypes.CHANGE_STATUS> {
+  payload: {
+    status: TStatus;
+    message?: string;
+  };
+}
+
+export type TAction = ISetUsers | IChangeStatus;

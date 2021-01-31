@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { usersApi } from "../../api/usersApi";
-import { setUsers } from "./actions";
+import { changeStatus, setUsers } from "./actions";
 import { ETypes, IState } from "./types";
 
 function* getUsers() {
@@ -8,8 +8,7 @@ function* getUsers() {
     const data: IState["items"] = yield call(usersApi.fetchData);
     yield put(setUsers(data));
   } catch (e) {
-    // TODO: change status
-    console.log(e);
+    yield put(changeStatus("error", e.response.data));
   }
 }
 
