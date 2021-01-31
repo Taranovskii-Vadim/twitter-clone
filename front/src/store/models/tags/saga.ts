@@ -2,12 +2,16 @@ import { call, put, takeEvery } from "redux-saga/effects";
 
 import { tagsApi } from "../../api/tagsApi";
 
-import { setTags } from "./actions";
+import { changeStatus, setTags } from "./actions";
 import { ETypes } from "./types";
 
 function* getTags() {
-  const data = yield call(tagsApi.fetchData);
-  yield put(setTags(data));
+  try {
+    const data = yield call(tagsApi.fetchData);
+    yield put(setTags(data));
+  } catch (e) {
+    yield put(changeStatus("error", e.response.data));
+  }
 }
 
 export function* tagsSaga() {

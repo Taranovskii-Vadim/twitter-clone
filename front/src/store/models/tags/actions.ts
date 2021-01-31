@@ -1,4 +1,5 @@
-import { ETypes, IFetchTags, ISetTags, IState } from "./types";
+import { TStatus } from "../../types";
+import { ETypes, IChangeStatus, IFetchTags, ISetTags, IState } from "./types";
 
 export const setTags = (payload: IState["items"]): ISetTags => ({
   type: ETypes.SET_TAGS,
@@ -6,3 +7,14 @@ export const setTags = (payload: IState["items"]): ISetTags => ({
 });
 
 export const fetchTags = (): IFetchTags => ({ type: ETypes.FETCH_TAGS });
+
+export const changeStatus = (
+  status: TStatus,
+  message?: string
+): IChangeStatus => ({
+  type: ETypes.CHANGE_STATUS,
+  payload: {
+    status,
+    message,
+  },
+});

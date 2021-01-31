@@ -1,5 +1,7 @@
 import { Action } from "redux";
 
+import { TStatus } from "../../types";
+
 // data
 export interface ITag {
   readonly id: string;
@@ -9,6 +11,8 @@ export interface ITag {
 
 export interface IState {
   items: ITag[];
+  status: TStatus;
+  message?: string;
 }
 
 // actions
@@ -16,6 +20,7 @@ export interface IState {
 export enum ETypes {
   SET_TAGS = "/tags/SET_TAGS",
   FETCH_TAGS = "/tags/FETCH_TAGS",
+  CHANGE_STATUS = "/tags/CHANGE_STATUS",
 }
 
 export interface ISetTags extends Action<ETypes> {
@@ -27,4 +32,12 @@ export interface IFetchTags extends Action<ETypes> {
   type: ETypes.FETCH_TAGS;
 }
 
-export type TAction = ISetTags;
+export interface IChangeStatus extends Action<ETypes> {
+  type: ETypes.CHANGE_STATUS;
+  payload: {
+    status: TStatus;
+    message?: string;
+  };
+}
+
+export type TAction = ISetTags | IChangeStatus;
