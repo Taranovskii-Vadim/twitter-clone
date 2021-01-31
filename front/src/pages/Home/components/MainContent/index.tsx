@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Paper from "@material-ui/core/Paper";
-import Alert from "@material-ui/lab/Alert";
-import Snackbar from "@material-ui/core/Snackbar";
 
 import Tweet from "../../../../components/Tweet";
 import ContentTitle from "./components/ContentTitle";

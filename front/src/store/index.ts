@@ -7,19 +7,22 @@ import createSagaMiddleware from "redux-saga";
 import { tweetsReducer } from "./models/tweets";
 import { tagsReducer } from "./models/tags";
 import { tweetReducer } from "./models/tweet";
+import { usersReducer } from "./models/users";
 // Saga
 import { tweetsSaga } from "./models/tweets/saga";
 import { tagsSaga } from "./models/tags/saga";
 import { tweetSaga } from "./models/tweet/saga";
+import { usersSaga } from "./models/users/saga";
 
 const rootReducer = combineReducers({
   tweets: tweetsReducer,
   tweet: tweetReducer,
   tags: tagsReducer,
+  users: usersReducer,
 });
 
 function* rootSaga() {
-  yield all([tweetsSaga(), tagsSaga(), tweetSaga()]);
+  yield all([tweetsSaga(), tagsSaga(), tweetSaga(), usersSaga()]);
 }
 
 const sagaMiddleware = createSagaMiddleware();

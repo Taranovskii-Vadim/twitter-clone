@@ -1,13 +1,7 @@
 import { Action } from "redux";
-import { TStatus } from "../../types";
+import { IUser, TStatus } from "../../types";
 
 // data
-
-interface IUser {
-  name: string;
-  nickname: string;
-  avatarUrl: string;
-}
 
 export interface ITweet {
   readonly id: string;

@@ -4,22 +4,5 @@
     "name": "Vadim",
     "nickname": "@ПiчэнькО",
     "avatarUrl": "https://img1.goodfon.ru/original/3830x2550/d/48/nastroeniya-devushka-ulybka-3172.jpg"
-  },
-  "recUsers": [
-    {
-      "name": "Diann Richard",
-      "nickname": "@Perez",
-      "avatarUrl": "https://source.unsplash.com/random/100*100?5"
-    },
-    {
-      "name": "Hooper Parks",
-      "nickname": "@Vanessa",
-      "avatarUrl": "https://source.unsplash.com/random/100*100?5"
-    },
-    {
-      "name": "Janice Glass",
-      "nickname": "@Deidre",
-      "avatarUrl": "https://source.unsplash.com/random/100*100?2"
-    }
-  ]
+  }
 }
