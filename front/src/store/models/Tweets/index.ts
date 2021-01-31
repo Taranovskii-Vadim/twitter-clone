@@ -15,7 +15,10 @@ export const tweetsReducer = produce(
     } else if (action.type === ETypes.SET_TWEET) {
       draft.items.unshift(action.payload);
     } else if (action.type === ETypes.CHANGE_STATUS) {
-      draft.status = action.payload;
+      if (action.payload.message) {
+        draft.message = action.payload.message;
+      }
+      draft.status = action.payload.status;
     }
   },
   initialState

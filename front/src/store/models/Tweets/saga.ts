@@ -12,7 +12,7 @@ function* getTweets() {
     const data: ITweetsState["items"] = yield call(tweetsApi.fetchData);
     yield put(setTweets(data));
   } catch (e) {
-    yield put(changeStatus("error"));
+    yield put(changeStatus("error", e.response.data));
   }
 }
 
@@ -21,7 +21,7 @@ function* addTweet({ payload }: IAddTweet) {
     const tweet: ITweet = yield call(tweetsApi.addTweet, payload);
     yield put(setTweet(tweet));
   } catch (e) {
-    console.log(e);
+    yield put(changeStatus("error"));
   }
 }
 

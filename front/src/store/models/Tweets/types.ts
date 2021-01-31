@@ -9,6 +9,7 @@ import { ITweet } from "../tweet/types";
 export interface IState {
   items: ITweet[];
   status: TStatus;
+  message?: string;
 }
 
 // actions
@@ -44,7 +45,10 @@ export interface IAddTweet extends Action<ETypes> {
 
 export interface IChangeStatus extends Action<ETypes> {
   type: ETypes.CHANGE_STATUS;
-  payload: TStatus;
+  payload: {
+    status: TStatus;
+    message?: string;
+  };
 }
 
 export type TAction = ISetTweets | IChangeStatus | ISetTweet;

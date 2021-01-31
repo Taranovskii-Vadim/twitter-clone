@@ -8,7 +8,6 @@ const getBase = (state: IRootState): IState => state.tweets;
 
 export const selectTweets = createSelector(getBase, state => state.items);
 
-export const selectStatusLoading = createSelector(
-  getBase,
-  state => state.status === "loading"
-);
+export const selectStatus = createSelector(getBase, state => state.status);
+
+export const selectMessage = createSelector(getBase, state => state.message);

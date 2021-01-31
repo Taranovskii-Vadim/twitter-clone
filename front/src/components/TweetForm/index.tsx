@@ -101,7 +101,7 @@ const TweetForm: React.FC<IProps> = ({ padding }): JSX.Element => {
             <Button
               className={styles.rootFormFooterBtn}
               type='submit'
-              disabled={isLimit}
+              disabled={!tweetText.length || isLimit}
               size='small'
               variant='contained'
               color='primary'
