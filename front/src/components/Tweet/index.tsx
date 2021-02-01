@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 import Typography from "@material-ui/core/Typography";
 
 import UserAvatar from "../ui/UserAvatar";
@@ -15,6 +16,7 @@ interface IProps {
 
 const Tweet: React.FC<IProps> = ({ tweet }): JSX.Element => {
   const styles = useStyles();
+
   return (
     <div className={styles.root}>
       <Link to={`/home/${tweet.id}`}>
@@ -24,9 +26,8 @@ const Tweet: React.FC<IProps> = ({ tweet }): JSX.Element => {
           </div>
           <Typography className={styles.rootUser}>
             {tweet.user.name} <br />
-            <small>
-              {tweet.user.nickname} {tweet.date}
-            </small>
+            <small style={{ marginRight: 5 }}>{tweet.user.nickname}</small>
+            <small>{moment(tweet.date).fromNow()}</small>
           </Typography>
         </div>
         <Typography className={styles.rootText}>{tweet.text}</Typography>

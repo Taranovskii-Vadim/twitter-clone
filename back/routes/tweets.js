@@ -30,9 +30,8 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const tweet = new Tweet(JSON.parse(req.body.text));
-    console.log(tweet);
-    // res.status(201).json(tweet);
-    // await tweet.save();
+    res.status(201).json(tweet);
+    await tweet.save();
   } catch (e) {
     console.log(e);
     res.status(500);

@@ -1,8 +1,18 @@
 [
   {
+    "id": "feec6916-023f-4fdb-bd91-c168624b936a",
+    "text": "тест moment js",
+    "user": {
+      "name": "Vadim",
+      "nickname": "@ПiчэнькО",
+      "avatarUrl": "https://twizz.ru/wp-content/uploads/2020/10/1601624395_8c7dd922ad47494fc02c388e12c00eac.jpg"
+    },
+    "date": "2021-02-01T21:14:50+04:00"
+  },
+  {
     "id": "caf16808-9c61-4e0a-8a33-f1be6d0c4ad4",
     "text": "Твит из модалки",
-    "date": "2021-01-31T23:54:47+04:00",
+    "date": "2021-01-31T11:54:47+04:00",
     "user": {
       "name": "Vadim",
       "nickname": "@ПiчэнькО",

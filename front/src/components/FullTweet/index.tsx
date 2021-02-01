@@ -1,7 +1,6 @@
 import React from "react";
+import moment from "moment";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Alert from "@material-ui/lab/Alert";
-import Snackbar from "@material-ui/core/Snackbar";
 import Typography from "@material-ui/core/Typography";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -58,7 +57,7 @@ const FullTweet: React.FC = (): JSX.Element => {
           </div>
           <Typography className={styles.rootUser}>
             {tweet.user.name} <br />
-            <small>{tweet.user.nickname} час назад</small>
+            <small>{tweet.user.nickname}</small>
           </Typography>
         </div>
         <Typography className={styles.rootText}>{tweet.text}</Typography>
@@ -70,7 +69,7 @@ const FullTweet: React.FC = (): JSX.Element => {
           />
         ) : null}
         <Typography className={styles.rootTime}>
-          6:31 PM 12 сент. 2015 г.
+          {moment(tweet.date).format("h:mm A Do MMMM YYYY")}
         </Typography>
         <div className={styles.rootTweetInfo}>
           <Typography>

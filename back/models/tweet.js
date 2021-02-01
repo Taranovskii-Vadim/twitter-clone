@@ -49,7 +49,12 @@ class Tweet {
 
   async save() {
     const data = await Tweet.getData();
-    data.unshift({ id: this.id, text: this.text, user: this.user });
+    data.unshift({
+      id: this.id,
+      text: this.text,
+      user: this.user,
+      date: this.date,
+    });
     await Tweet.setData(data);
   }
 }
