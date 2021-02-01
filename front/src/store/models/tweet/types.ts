@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import { IUser, TStatus } from "../../types";
+import { IMessage, IUser, TStatus } from "../../types";
 
 // data
 
@@ -14,7 +14,7 @@ export interface ITweet {
 export interface IState {
   tweet?: ITweet;
   status: TStatus;
-  message?: string;
+  message?: IMessage;
 }
 
 // actions
@@ -39,7 +39,7 @@ export interface IChangeStatus extends Action<ETypes> {
   type: ETypes.CHANGE_STATUS;
   payload: {
     status: TStatus;
-    message?: string;
+    message?: IMessage;
   };
 }
 

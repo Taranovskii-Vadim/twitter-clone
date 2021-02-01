@@ -3,6 +3,7 @@ import moment from "moment";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
 import { useDispatch, useSelector } from "react-redux";
+import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
 
 import UserAvatar from "../ui/UserAvatar";
@@ -16,15 +17,18 @@ import {
 } from "../../store/models/tweet/selectors";
 
 import { useStyles } from "./styles";
+import { getSnackBarConfig } from "../../helpers";
 
 const FullTweet: React.FC = (): JSX.Element => {
   const styles = useStyles();
+
+  const { enqueueSnackbar } = useSnackbar();
 
   const params: { id: string } = useParams();
   const dispatch = useDispatch();
   const tweet = useSelector(selectTweet);
   const status = useSelector(selectStatus);
-  // const message = useSelector(selectMessage);
+  const message = useSelector(selectMessage);
 
   const isLoading = status === "loading";
 
@@ -34,6 +38,12 @@ const FullTweet: React.FC = (): JSX.Element => {
       dispatch(setTweet(undefined));
     };
   }, [dispatch, params.id]);
+
+  React.useEffect(() => {
+    if (message) {
+      enqueueSnackbar(message.text, getSnackBarConfig(message.type));
+    }
+  }, [message]);
 
   if (isLoading) {
     return (

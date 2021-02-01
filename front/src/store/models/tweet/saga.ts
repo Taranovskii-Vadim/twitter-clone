@@ -9,7 +9,7 @@ function* getTweet({ payload }: IFetchTweet) {
     const data: IState["tweet"] = yield call(tweetsApi.fetchTweet, payload);
     yield put(setTweet(data));
   } catch (e) {
-    yield put(changeStatus("error", e.response.data));
+    yield put(changeStatus("error", { type: "error", text: e.response.data }));
   }
 }
 
