@@ -8,4 +8,7 @@ const getBase = (state: IRootState): IState => state.tags;
 
 export const selectTags = createSelector(getBase, state => state.items);
 
-export const selectMessage = createSelector(getBase, state => state.message);
+export const selectTagsMessage = createSelector(
+  getBase,
+  state => state.message
+);

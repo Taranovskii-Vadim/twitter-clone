@@ -1,4 +1,4 @@
-import { TStatus } from "../../types";
+import { IMessage, TStatus } from "../../types";
 import { ETypes, IChangeStatus, IFetchUsers, ISetUsers, IState } from "./types";
 
 export const fetchUsers = (): IFetchUsers => ({ type: ETypes.FETCH_USERS });
@@ -10,7 +10,7 @@ export const setUsers = (payload: IState["items"]): ISetUsers => ({
 
 export const changeStatus = (
   status: TStatus,
-  message?: string
+  message?: IMessage
 ): IChangeStatus => ({
   type: ETypes.CHANGE_STATUS,
   payload: {

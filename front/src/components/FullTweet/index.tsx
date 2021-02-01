@@ -7,7 +7,6 @@ import { useParams } from "react-router-dom";
 
 import UserAvatar from "../ui/UserAvatar";
 import TweetTools from "../TweetTools";
-import EmptyData from "../EmptyData";
 
 import { fetchTweet, setTweet } from "../../store/models/tweet/actions";
 import {
@@ -25,7 +24,7 @@ const FullTweet: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const tweet = useSelector(selectTweet);
   const status = useSelector(selectStatus);
-  const message = useSelector(selectMessage);
+  // const message = useSelector(selectMessage);
 
   const isLoading = status === "loading";
 
@@ -35,10 +34,6 @@ const FullTweet: React.FC = (): JSX.Element => {
       dispatch(setTweet(undefined));
     };
   }, [dispatch, params.id]);
-
-  if (message) {
-    return <EmptyData message={message} />;
-  }
 
   if (isLoading) {
     return (

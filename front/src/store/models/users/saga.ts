@@ -8,7 +8,7 @@ function* getUsers() {
     const data: IState["items"] = yield call(usersApi.fetchData);
     yield put(setUsers(data));
   } catch (e) {
-    yield put(changeStatus("error", e.response.data));
+    yield put(changeStatus("error", { type: "error", text: e.response.data }));
   }
 }
 

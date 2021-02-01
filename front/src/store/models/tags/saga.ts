@@ -10,7 +10,7 @@ function* getTags() {
     const data = yield call(tagsApi.fetchData);
     yield put(setTags(data));
   } catch (e) {
-    yield put(changeStatus("error", e.response.data));
+    yield put(changeStatus("error", { type: "error", text: e.response.data }));
   }
 }
 

@@ -52,7 +52,8 @@ const TweetForm: React.FC<IProps> = ({ padding }): JSX.Element => {
     const value = e.currentTarget.value;
     setValue("tweetText", value);
   };
-
+  // TODO: Сделать loading button для формы выделить отдельный статус и сообщение
+  // TODO: Подумать и придти к одному формату выведения ошибки
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

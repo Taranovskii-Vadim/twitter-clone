@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider, CssBaseline } from "@material-ui/core";
+import { SnackbarProvider } from "notistack";
 
 import App from "./App";
 import theme from "./theme";
@@ -15,7 +16,9 @@ ReactDOM.render(
       <Router>
         <CssBaseline />
         <Provider store={store}>
-          <App />
+          <SnackbarProvider maxSnack={3}>
+            <App />
+          </SnackbarProvider>
         </Provider>
       </Router>
     </ThemeProvider>

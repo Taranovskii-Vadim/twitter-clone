@@ -7,11 +7,9 @@ import Paper from "@material-ui/core/Paper";
 
 import Tweet from "../../../../components/Tweet";
 import ContentTitle from "./components/ContentTitle";
-import EmptyData from "../../../../components/EmptyData";
 
 import { fetchTweets } from "../../../../store/models/tweets/actions";
 import {
-  selectMessage,
   selectStatus,
   selectTweets,
 } from "../../../../store/models/tweets/selectors";
@@ -25,7 +23,6 @@ const MainContent: React.FC = (): JSX.Element => {
 
   const tweets = useSelector(selectTweets);
   const status = useSelector(selectStatus);
-  const message = useSelector(selectMessage);
 
   const isLoading = status === "loading";
 
@@ -42,8 +39,6 @@ const MainContent: React.FC = (): JSX.Element => {
             <div style={{ textAlign: "center" }}>
               <CircularProgress />
             </div>
-          ) : message ? (
-            <EmptyData message={message} />
           ) : (
             tweets.map(item => <Tweet key={item.id} tweet={item} />)
           )}

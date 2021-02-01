@@ -1,6 +1,6 @@
 import { Action } from "redux";
 
-import { TStatus } from "../../types";
+import { IMessage, TStatus } from "../../types";
 
 // data
 export interface ITag {
@@ -12,7 +12,7 @@ export interface ITag {
 export interface IState {
   items: ITag[];
   status: TStatus;
-  message?: string;
+  message?: IMessage;
 }
 
 // actions
@@ -36,7 +36,7 @@ export interface IChangeStatus extends Action<ETypes> {
   type: ETypes.CHANGE_STATUS;
   payload: {
     status: TStatus;
-    message?: string;
+    message?: IMessage;
   };
 }
 
