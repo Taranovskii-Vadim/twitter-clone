@@ -34,6 +34,7 @@ const Sidebar: React.FC = (): JSX.Element => {
     dispatch(fetchTags());
     dispatch(fetchUsers());
   }, []);
+
   // ! Тут есть костыль, к черту Mui, Antd топ
   return (
     <div className={styles.wrapper}>

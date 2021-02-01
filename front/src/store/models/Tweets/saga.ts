@@ -21,7 +21,7 @@ function* addTweet({ payload }: IAddTweet) {
     const tweet: ITweet = yield call(tweetsApi.addTweet, payload);
     yield put(setTweet(tweet));
   } catch (e) {
-    yield put(changeStatus("error"));
+    yield put(changeStatus("error", "Произошла ошибка при добавлении твита"));
   }
 }
 

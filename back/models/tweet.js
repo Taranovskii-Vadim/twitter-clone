@@ -1,11 +1,13 @@
 const path = require("path");
 const fs = require("fs");
+const moment = require("moment");
 const { v4: uuidv4 } = require("uuid");
 
 class Tweet {
   constructor(text) {
     this.id = uuidv4();
     this.text = text;
+    this.date = moment().format();
     this.user = {
       name: "Vadim",
       nickname: "@ПiчэнькО",

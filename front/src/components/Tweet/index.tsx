@@ -24,7 +24,9 @@ const Tweet: React.FC<IProps> = ({ tweet }): JSX.Element => {
           </div>
           <Typography className={styles.rootUser}>
             {tweet.user.name} <br />
-            <small>{tweet.user.nickname} час назад</small>
+            <small>
+              {tweet.user.nickname} {tweet.date}
+            </small>
           </Typography>
         </div>
         <Typography className={styles.rootText}>{tweet.text}</Typography>

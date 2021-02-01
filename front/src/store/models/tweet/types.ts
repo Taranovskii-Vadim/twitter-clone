@@ -6,6 +6,7 @@ import { IUser, TStatus } from "../../types";
 export interface ITweet {
   readonly id: string;
   text: string;
+  date: string;
   imageUrl?: string;
   user: IUser;
 }

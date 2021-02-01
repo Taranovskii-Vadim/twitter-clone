@@ -42,12 +42,10 @@ const MainContent: React.FC = (): JSX.Element => {
             <div style={{ textAlign: "center" }}>
               <CircularProgress />
             </div>
-          ) : tweets.length ? (
-            tweets.map(item => <Tweet key={item.id} tweet={item} />)
+          ) : message ? (
+            <EmptyData message={message} />
           ) : (
-            <EmptyData
-              message={message ? message : "Добавьте свой первый твит!!!"}
-            />
+            tweets.map(item => <Tweet key={item.id} tweet={item} />)
           )}
         </Route>
         <Route path='/search' render={() => <p>Search</p>} />
