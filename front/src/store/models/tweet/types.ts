@@ -25,18 +25,15 @@ export enum ETypes {
   CHANGE_STATUS = "/tweet/CHANGE_STATUS",
 }
 
-export interface IFetchTweet extends Action<ETypes> {
-  type: ETypes.FETCH_TWEET;
+export interface IFetchTweet extends Action<ETypes.FETCH_TWEET> {
   payload: string;
 }
 
-export interface ISetTweet extends Action<ETypes> {
-  type: ETypes.SET_TWEET;
+export interface ISetTweet extends Action<ETypes.SET_TWEET> {
   payload: IState["tweet"];
 }
 
-export interface IChangeStatus extends Action<ETypes> {
-  type: ETypes.CHANGE_STATUS;
+export interface IChangeStatus extends Action<ETypes.CHANGE_STATUS> {
   payload: {
     status: TStatus;
     message?: IMessage;

@@ -23,17 +23,13 @@ export enum ETypes {
   CHANGE_STATUS = "/tags/CHANGE_STATUS",
 }
 
-export interface ISetTags extends Action<ETypes> {
-  type: ETypes.SET_TAGS;
+export interface ISetTags extends Action<ETypes.SET_TAGS> {
   payload: IState["items"];
 }
 
-export interface IFetchTags extends Action<ETypes> {
-  type: ETypes.FETCH_TAGS;
-}
+export interface IFetchTags extends Action<ETypes.FETCH_TAGS> {}
 
-export interface IChangeStatus extends Action<ETypes> {
-  type: ETypes.CHANGE_STATUS;
+export interface IChangeStatus extends Action<ETypes.CHANGE_STATUS> {
   payload: {
     status: TStatus;
     message?: IMessage;
