@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useSnackbar } from "notistack";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Paper from "@material-ui/core/Paper";
@@ -8,23 +9,34 @@ import Paper from "@material-ui/core/Paper";
 import Tweet from "../../../../components/Tweet";
 import ContentTitle from "./components/ContentTitle";
 
+import { getSnackBarConfig } from "../../../../helpers";
+
 import { fetchTweets } from "../../../../store/models/tweets/actions";
 import {
   selectStatus,
   selectTweets,
+  selectMessage,
 } from "../../../../store/models/tweets/selectors";
 
 import { useStyles } from "./styles";
 
 const MainContent: React.FC = (): JSX.Element => {
+  const { enqueueSnackbar } = useSnackbar();
   const styles = useStyles();
 
   const dispatch = useDispatch();
 
   const tweets = useSelector(selectTweets);
   const status = useSelector(selectStatus);
+  const message = useSelector(selectMessage);
 
   const isLoading = status === "loading";
+
+  React.useEffect(() => {
+    if (message) {
+      enqueueSnackbar(message.text, getSnackBarConfig(message.type));
+    }
+  }, [message]);
 
   React.useEffect(() => {
     dispatch(fetchTweets());

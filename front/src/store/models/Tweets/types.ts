@@ -1,6 +1,6 @@
 import { Action } from "redux";
 
-import { TStatus } from "../../types";
+import { IMessage, TStatus } from "../../types";
 
 import { ITweet } from "../tweet/types";
 
@@ -9,7 +9,11 @@ import { ITweet } from "../tweet/types";
 export interface IState {
   items: ITweet[];
   status: TStatus;
-  message?: string;
+  message?: IMessage;
+  formState: {
+    formStatus: TStatus;
+    formMessage?: IMessage;
+  };
 }
 
 // actions
@@ -20,6 +24,7 @@ export enum ETypes {
   FETCH_TWEETS = "/tweets/FETCH_TWEETS",
   ADD_TWEET = "/tweets/ADD_TWEET",
   CHANGE_STATUS = "/tweets/CHANGE_STATUS",
+  CHANGE_FORM_STATUS = "/tweets/CHANGE_FORM_STATUS",
 }
 
 export interface ISetTweets extends Action<ETypes.SET_TWEETS> {
@@ -39,8 +44,19 @@ export interface IAddTweet extends Action<ETypes.ADD_TWEET> {
 export interface IChangeStatus extends Action<ETypes.CHANGE_STATUS> {
   payload: {
     status: TStatus;
-    message?: string;
+    message?: IMessage;
   };
 }
 
-export type TAction = ISetTweets | IChangeStatus | ISetTweet;
+export interface IChangeFormStatus extends Action<ETypes.CHANGE_FORM_STATUS> {
+  payload: {
+    formStatus: TStatus;
+    formMessage?: IMessage;
+  };
+}
+
+export type TAction =
+  | ISetTweets
+  | IChangeStatus
+  | ISetTweet
+  | IChangeFormStatus;
