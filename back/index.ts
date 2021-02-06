@@ -1,11 +1,14 @@
 import * as express from "express";
 import * as mongoose from "mongoose";
+import * as dotenv from "dotenv";
 
 // Routes
 
 import { tagsRouter } from "./routes/tags";
 
 const server = express();
+
+dotenv.config();
 
 const PORT = process.env.PORT || 3001;
 

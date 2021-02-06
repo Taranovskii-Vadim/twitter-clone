@@ -1,5 +1,4 @@
 import { model, Schema } from "mongoose";
-import { IUser } from "./types";
 
 const UserSchema = new Schema({
   name: {
@@ -19,6 +18,14 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  confirmed: {
+    type: Boolean,
+    default: false,
+  },
+  confirmed_hash: {
+    type: String,
+    required: true,
+  },
 });
 
-export const UserModel = model<IUser>("User", UserSchema);
+export const UserModel = model("User", UserSchema);

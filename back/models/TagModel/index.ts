@@ -1,5 +1,4 @@
 import { model, Schema } from "mongoose";
-import { ITag } from "./types";
 
 const TagSchema = new Schema({
   title: {
@@ -12,4 +11,4 @@ const TagSchema = new Schema({
   },
 });
 
-export const TagModel = model<ITag>("TagModel", TagSchema);
+export const TagModel = model("TagModel", TagSchema);
