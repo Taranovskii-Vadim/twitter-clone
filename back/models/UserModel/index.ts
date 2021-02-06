@@ -1,4 +1,15 @@
-import { model, Schema } from "mongoose";
+import { Document, model, Schema } from "mongoose";
+
+export interface IUser {
+  name: string;
+  email: string;
+  password: string;
+  nickname: string;
+  confirmed?: boolean;
+  confirmed_hash: string;
+}
+
+type TUserSchema = IUser & Document;
 
 const UserSchema = new Schema({
   name: {
@@ -28,4 +39,4 @@ const UserSchema = new Schema({
   },
 });
 
-export const UserModel = model("User", UserSchema);
+export const UserModel = model<TUserSchema>("User", UserSchema);

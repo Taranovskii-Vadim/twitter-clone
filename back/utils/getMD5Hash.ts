@@ -1,4 +1,4 @@
-import crypto from "crypto";
+import { createHash } from "crypto";
 
 export const generateMD5Hash = (value: string) =>
-  crypto.createHash("md5").update(value).digest("hex");
+  createHash("md5").update(value).digest("hex");

@@ -2,18 +2,19 @@ import * as express from "express";
 import * as mongoose from "mongoose";
 import * as dotenv from "dotenv";
 
-// Routes
+dotenv.config();
 
+// Routes
+import { usersRouter } from "./routes/users";
 import { tagsRouter } from "./routes/tags";
 
 const server = express();
-
-dotenv.config();
 
 const PORT = process.env.PORT || 3001;
 
 server.use(express.json());
 
+server.use("/users", usersRouter);
 server.use("/tags", tagsRouter);
 
 async function start() {
