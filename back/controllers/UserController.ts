@@ -1,17 +1,18 @@
-import * as express from "express";
+import express from "express";
 import { validationResult } from "express-validator";
-import { IUser, UserModel } from "../models/UserModel";
 
-import { generateMD5Hash } from "../utils/getMD5Hash";
+import { userModel } from "../models/UserModel";
+import { IUser } from "../models/UserModel/types";
+import { getMd5Hash } from "../utils/getMd5Hash";
 import { sendEmail } from "../utils/sendEmail";
 
 class UserController {
   async index(req: express.Request, res: express.Response): Promise<void> {
     try {
-      const users = await UserModel.find({});
-      res.json(users);
+      const users = await userModel.find();
+      res.status(200).json(users);
     } catch (e) {
-      res.status(404).send(e);
+      res.status(500).send(e);
     }
   }
   async create(req: express.Request, res: express.Response): Promise<void> {
@@ -24,49 +25,48 @@ class UserController {
 
       const data: IUser = {
         name: req.body.name,
+        nickname: req.body.nickname,
         email: req.body.email,
         password: req.body.password,
-        nickname: req.body.nickname,
-        confirmed_hash: generateMD5Hash(
+        confirmedHash: getMd5Hash(
           process.env.SECRET_KEY || Math.random().toString()
         ),
       };
 
-      const user = await UserModel.create(data);
+      const user = await userModel.create(data);
 
       sendEmail(
         {
           from: "admin@twitter.com",
-          to: req.body.email,
-          subject: "Вы успешно зарегистрированы в твитере",
-          html: `Для того, чтобы подтвердить почту, перейдите <a href="http://localhost:${
+          to: data.email,
+          subject: "Поздравлем с регистрацией на сайте",
+          html: `Для подтверждения вашего аккаунта перейдите по указанной <a href="http://localhost:${
             process.env.PORT || 3001
-          }/users/verify?hash=${data.confirmed_hash}">по указанной ссылке</a>`,
+          }/users/verify?hash=${data.confirmedHash}">ссылке</a>`,
         },
         err => {
           if (err) {
-            res.json(err);
+            res.status(500).json(err);
           } else {
             res.json(user);
           }
         }
       );
     } catch (e) {
-      res.status(500).send(e);
+      console.log(e);
     }
   }
   async verify(req: express.Request, res: express.Response): Promise<void> {
     try {
-      const hash: string = req.query.hash.toString();
+      const hash = req.query.hash;
       if (!hash) {
-        res.status(400).send("Hash отсутствует");
+        res.status(500).json("URL адрес несуществует");
       }
-      const user = await UserModel.findOne({ confirmed_hash: hash });
+      const user = await userModel.findOne({ confirmedHash: hash.toString() });
       user.confirmed = true;
       await user.save();
-      res.status(201).json("Success");
     } catch (e) {
-      res.status(500).send("Произошла ошибка");
+      res.status(500).json("Не удалось обновить информацию о пользователе");
     }
   }
 }

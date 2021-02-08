@@ -1,17 +1,9 @@
-import { Document, model, Schema } from "mongoose";
+import { model, Schema, Document } from "mongoose";
+import { IUser } from "./types";
 
-export interface IUser {
-  name: string;
-  email: string;
-  password: string;
-  nickname: string;
-  confirmed?: boolean;
-  confirmed_hash: string;
-}
+type TUser = IUser & Document;
 
-type TUserSchema = IUser & Document;
-
-const UserSchema = new Schema({
+const userSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -19,13 +11,12 @@ const UserSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
   },
-  password: {
+  nickname: {
     type: String,
     required: true,
   },
-  nickname: {
+  password: {
     type: String,
     required: true,
   },
@@ -33,10 +24,11 @@ const UserSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  confirmed_hash: {
+  confirmedHash: {
     type: String,
+    unique: true,
     required: true,
   },
 });
 
-export const UserModel = model<TUserSchema>("User", UserSchema);
+export const userModel = model<TUser>("User", userSchema);

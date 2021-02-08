@@ -1,11 +1,14 @@
-import * as express from "express";
+import { Router } from "express";
 import { userController } from "../controllers/UserController";
-import { registerValidator } from "../validators/register";
 
-const router = express.Router();
+import { createUserValidator } from "../validators/createUser";
+
+const router = Router();
 
 router.get("/", userController.index);
-router.get("/verify", userController.verify);
-router.post("/", registerValidator, userController.create);
 
-export const usersRouter = router;
+router.post("/", createUserValidator, userController.create);
+
+router.get("/verify", userController.verify);
+
+export { router };

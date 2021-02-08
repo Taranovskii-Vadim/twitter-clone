@@ -1,33 +1,30 @@
-import * as express from "express";
-import * as mongoose from "mongoose";
-import * as dotenv from "dotenv";
-
+import dotenv from "dotenv";
 dotenv.config();
+import express from "express";
+import mongoose from "mongoose";
 
 // Routes
-import { usersRouter } from "./routes/users";
-import { tagsRouter } from "./routes/tags";
+import { router as UsersRouter } from "./routes/users";
 
-const server = express();
+const app = express();
 
 const PORT = process.env.PORT || 3001;
 
-server.use(express.json());
+app.use(express.json());
 
-server.use("/users", usersRouter);
-server.use("/tags", tagsRouter);
+app.use("/users", UsersRouter);
 
 async function start() {
   try {
-    await mongoose.connect(
-      "mongodb+srv://vadim:7sIPR7r7uisSvgi8@cluster0.xtpjk.mongodb.net/clone?retryWrites=true&w=majority",
+    mongoose.connect(
+      "mongodb+srv://vadim:zNAA5pMpZV46uzzW@cluster0.xtpjk.mongodb.net/clone?retryWrites=true&w=majority",
       {
-        useNewUrlParser: true,
         useUnifiedTopology: true,
+        useNewUrlParser: true,
       }
     );
-    server.listen(PORT, (): void => {
-      console.log(`Server is running on PORT: ${PORT}`);
+    app.listen(PORT, () => {
+      console.log(`Server is running on port: ${PORT}`);
     });
   } catch (e) {
     console.log(e);
