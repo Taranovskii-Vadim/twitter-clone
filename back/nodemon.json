@@ -1,0 +1,4 @@
+{
+  "ex": "ts",
+  "exec": "ts-node index.ts"
+}
