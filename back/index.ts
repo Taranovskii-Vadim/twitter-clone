@@ -21,6 +21,7 @@ async function start() {
       {
         useUnifiedTopology: true,
         useNewUrlParser: true,
+        useCreateIndex: true,
       }
     );
     app.listen(PORT, () => {

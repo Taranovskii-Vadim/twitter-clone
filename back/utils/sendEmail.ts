@@ -1,4 +1,5 @@
 import Mail from "nodemailer/lib/mailer";
+
 import { transport } from "../core/mailer";
 
 type TSendEmail = (
