@@ -5,6 +5,9 @@ import mongoose from "mongoose";
 
 // Routes
 import { router as UsersRouter } from "./routes/users";
+import { router as AuthRouter } from "./routes/auth";
+
+import { passport } from "./core/passport";
 
 const app = express();
 
@@ -12,6 +15,9 @@ const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 
+app.use(passport.initialize());
+
+app.use("/auth", AuthRouter);
 app.use("/users", UsersRouter);
 
 async function start() {
