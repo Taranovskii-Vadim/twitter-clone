@@ -1,5 +1,6 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
+import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
 
 import { userModel } from "../models/UserModel";
 import { IUser } from "../models/UserModel/types";
@@ -26,8 +27,24 @@ passport.use(
   })
 );
 
+passport.use(
+  new JwtStrategy(
+    {
+      secretOrKey: process.env.SECRET_KEY,
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    },
+    async (payload, done) => {
+      try {
+        return done(null, payload.user);
+      } catch (e) {
+        done(e);
+      }
+    }
+  )
+);
+
 passport.serializeUser(function (user: IUser, done) {
-  done(null, user.id);
+  done(null, user._id);
 });
 
 passport.deserializeUser(function (id, done) {

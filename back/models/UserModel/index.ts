@@ -2,7 +2,7 @@ import { model, Schema, Document } from "mongoose";
 
 import { IUser } from "./types";
 
-type TUser = IUser & Document;
+export type TUser = IUser & Document;
 
 const userSchema = new Schema(
   {
