@@ -1,4 +1,5 @@
 import express, { Router } from "express";
+
 import { passport } from "../core/passport";
 import { authController } from "../controllers/AuthController";
 import { createUserValidator } from "../validators/createUser";
