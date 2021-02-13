@@ -3,19 +3,20 @@ dotenv.config();
 import express from "express";
 import mongoose from "mongoose";
 
-// Routes
-import { router as UsersRouter } from "./routes/users";
+import { appPassport } from "./core/passport";
 
-import { passport } from "./core/passport";
+// Routes
+import { UsersRouter } from "./routes/users";
+import { AuthRouter } from "./routes/auth";
 
 const app = express();
 
 const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
+app.use(appPassport.initialize());
 
-app.use(passport.initialize());
-
+app.use("/auth", AuthRouter);
 app.use("/users", UsersRouter);
 
 async function start() {

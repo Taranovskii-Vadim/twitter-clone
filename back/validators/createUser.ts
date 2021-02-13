@@ -2,7 +2,7 @@ import { body } from "express-validator";
 
 import { userModel } from "../models/UserModel";
 
-export const createUserValidator = [
+export const signUpValidator = [
   body("name", "Укажите имя")
     .isLength({ min: 2 })
     .withMessage("Длина имени не должна быть меньше 2 символов")

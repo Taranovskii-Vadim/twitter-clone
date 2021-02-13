@@ -1,8 +1,6 @@
-import { model, Schema, Document } from "mongoose";
+import { model, Schema } from "mongoose";
 
-import { IUser } from "./types";
-
-export type TUser = IUser & Document;
+import { TUser } from "./types";
 
 const userSchema = new Schema(
   {

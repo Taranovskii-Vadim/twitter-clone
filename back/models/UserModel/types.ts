@@ -1,3 +1,4 @@
+import { Document } from "mongoose";
 export interface IUser {
   readonly _id?: string;
   name: String;
@@ -7,3 +8,5 @@ export interface IUser {
   confirmedHash: string;
   confirmed?: boolean;
 }
+
+export type TUser = IUser & Document;

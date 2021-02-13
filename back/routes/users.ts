@@ -1,21 +1,18 @@
 import { Router } from "express";
-import { passport } from "../core/passport";
 
 import { userController } from "../controllers/UserController";
-import { createUserValidator } from "../validators/createUser";
+import { appPassport } from "../core/passport";
 
 const router = Router();
 
-router.get("/", userController.index);
+router.get(
+  "/me",
+  appPassport.authenticate("jwt", { session: false }),
+  userController.getMyself
+);
 
-router.get("/me", passport.authenticate("jwt"), userController.getMySelf);
+router.get("/", userController.index);
 
 router.get("/:id", userController.getOne);
 
-router.post("/signUp", createUserValidator, userController.create);
-
-router.get("/verify", userController.verify);
-
-router.post("/signIn", passport.authenticate("local"), userController.addToken);
-
-export { router };
+export { router as UsersRouter };
