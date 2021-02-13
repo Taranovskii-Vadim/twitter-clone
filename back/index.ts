@@ -8,6 +8,7 @@ import { appPassport } from "./core/passport";
 // Routes
 import { UsersRouter } from "./routes/users";
 import { AuthRouter } from "./routes/auth";
+import { TweetRouter } from "./routes/tweets";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(appPassport.initialize());
 
 app.use("/auth", AuthRouter);
 app.use("/users", UsersRouter);
+app.use("/tweets", TweetRouter);
 
 async function start() {
   try {

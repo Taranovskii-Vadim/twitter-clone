@@ -3,7 +3,7 @@ import { Strategy as LocalStrategy } from "passport-local";
 import { ExtractJwt, Strategy as JwtStrategy } from "passport-jwt";
 
 import { userModel } from "../models/UserModel";
-import { IUser, TUser } from "../models/UserModel/types";
+import { IUser } from "../models/UserModel/types";
 import { getMd5Hash } from "../utils/getMd5Hash";
 
 passport.use(
@@ -46,7 +46,7 @@ passport.use(
     },
     async (payload, done) => {
       try {
-        const user = await userModel.findById(payload.data.id);
+        const user = await userModel.findById(payload.data._id);
         if (user) {
           return done(null, user);
         }

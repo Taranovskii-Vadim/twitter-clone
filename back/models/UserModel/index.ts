@@ -35,11 +35,8 @@ const userSchema = new Schema(
 
 userSchema.set("toJSON", {
   transform: function (doc, user) {
-    user.id = user._id;
-    delete user._id;
     delete user.confirmedHash;
     delete user.password;
-
     return user;
   },
 });

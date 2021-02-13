@@ -4,8 +4,10 @@ import jwt from "jsonwebtoken";
 
 import { userModel } from "../models/UserModel";
 import { IUser, TUser } from "../models/UserModel/types";
+
 import { getMd5Hash } from "../utils/getMd5Hash";
 import { sendEmail } from "../utils/sendEmail";
+import { sendError, unknownError } from "../utils/sendError";
 
 class AuthController {
   async create(req: express.Request, res: express.Response): Promise<void> {
@@ -39,27 +41,27 @@ class AuthController {
         },
         err => {
           if (err) {
-            res.status(500).json(err);
+            res.status(500).json(sendError(err));
           } else {
             res.status(201).json(user);
           }
         }
       );
     } catch (e) {
-      res.status(500).json("Неизвестная ошибка");
+      res.status(500).json(unknownError());
     }
   }
   async verify(req: express.Request, res: express.Response): Promise<void> {
     try {
       const hash = req.query.hash;
       if (!hash) {
-        res.status(500).json("URL адрес несуществует");
+        res.status(500).json(sendError("URL адрес несуществует"));
       }
       const user = await userModel.findOne({ confirmedHash: hash.toString() });
       user.confirmed = true;
       await user.save();
     } catch (e) {
-      res.status(500).json("Не удалось обновить информацию о пользователе");
+      res.status(500).json(unknownError());
     }
   }
   async addToken(req: express.Request, res: express.Response): Promise<void> {
@@ -72,7 +74,7 @@ class AuthController {
         }),
       });
     } catch (e) {
-      res.status(500).json();
+      res.status(500).json(unknownError());
     }
   }
 }

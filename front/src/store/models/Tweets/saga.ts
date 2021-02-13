@@ -12,7 +12,9 @@ function* getTweets() {
     const data: ITweetsState["items"] = yield call(tweetsApi.fetchData);
     yield put(setTweets(data));
   } catch (e) {
-    yield put(changeStatus("error", { type: "error", text: e.response.data }));
+    yield put(
+      changeStatus("error", { type: "error", text: e.response.data.message })
+    );
   }
 }
 
@@ -23,7 +25,10 @@ function* addTweet({ payload }: IAddTweet) {
     yield put(setTweet(tweet));
   } catch (e) {
     yield put(
-      changeFormStatus("error", { type: "error", text: e.response.data })
+      changeFormStatus("error", {
+        type: "error",
+        text: e.response.data.message,
+      })
     );
   }
 }
