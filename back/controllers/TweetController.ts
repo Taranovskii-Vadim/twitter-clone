@@ -96,6 +96,30 @@ class TweetController {
       res.status(500).json(unknownError());
     }
   }
+  async update(req: express.Request, res: express.Response): Promise<void> {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        res.status(400).json({ errors: errors.array() });
+        return;
+      }
+      const tweetId = req.params.id;
+      if (!isValidObjectId(tweetId)) {
+        res.status(400).json(sendError("URL адрес некорректный"));
+        return;
+      }
+      const tweet = await tweetModel.findById(tweetId);
+      if (tweet) {
+        tweet.text = req.body.text;
+        await tweet.save();
+        res.status(200).json(tweet);
+      } else {
+        res.status(404).json(sendError("Твит не существует"));
+      }
+    } catch (e) {
+      res.status(500).json(unknownError());
+    }
+  }
 }
 
 export const tweetController = new TweetController();
