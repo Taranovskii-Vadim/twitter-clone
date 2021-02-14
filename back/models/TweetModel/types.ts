@@ -1,11 +1,18 @@
 import { Document } from "mongoose";
-import { TUser } from "../UserModel/types";
+import { IReturnUser, TUser } from "../UserModel/types";
+
+export interface IReturnTweet {
+  readonly id: any;
+  text: string;
+  date: Date;
+  user: IReturnUser;
+}
 
 export interface ITweet {
   readonly _id?: string;
   text: string;
-  date?: Date;
   user: TUser;
+  createdAt?: Date;
 }
 
 export type TTweet = ITweet & Document;

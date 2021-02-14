@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 
 import { userModel } from "../models/UserModel";
-import { sendError, unknownError } from "../utils/sendError";
+import { sendError, unknownError } from "../utils/sendResponse";
 
 const isValidObjectId = (value: string) => mongoose.isValidObjectId(value);
 // TODO:Разобраться с возвращаемыми объектами

@@ -7,7 +7,7 @@ import { IUser, TUser } from "../models/UserModel/types";
 
 import { getMd5Hash } from "../utils/getMd5Hash";
 import { sendEmail } from "../utils/sendEmail";
-import { sendError, unknownError } from "../utils/sendError";
+import { sendError, unknownError } from "../utils/sendResponse";
 
 class AuthController {
   async create(req: express.Request, res: express.Response): Promise<void> {

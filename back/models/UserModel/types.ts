@@ -1,13 +1,16 @@
 import { Document } from "mongoose";
 
 export interface IReturnUser {
+  readonly id: any;
   name: string;
   nickname: string;
 }
 
-export interface IUser extends IReturnUser {
+export interface IUser {
   readonly _id?: string;
   email: string;
+  name: string;
+  nickname: string;
   password: string;
   confirmedHash: string;
   confirmed?: boolean;

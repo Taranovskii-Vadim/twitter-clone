@@ -11,17 +11,7 @@ const UserAvatar: React.FC<AvatarProps> = ({ size, url }): JSX.Element => {
     width: size === "small" ? 45 : 40,
     height: size === "small" ? 45 : 40,
   };
-  return (
-    <Avatar
-      alt='user'
-      style={styles}
-      src={
-        url
-          ? url
-          : "https://yt3.ggpht.com/a/AATXAJxfhf3kbn0w0USsJ25Srf3KLKEXpHNX0zO4Wg=s900-c-k-c0xffffffff-no-rj-mo"
-      }
-    />
-  );
+  return <Avatar alt='user' style={styles} src={url} />;
 };
 
 export default UserAvatar;

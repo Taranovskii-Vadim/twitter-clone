@@ -8,18 +8,13 @@ const tweetSchema = new Schema(
       required: true,
       maxlength: 280,
     },
-    date: {
-      type: Date,
-      required: true,
-      default: Date.now,
-    },
     user: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: "User",
     },
   },
-  { versionKey: false }
+  { versionKey: false, timestamps: true }
 );
 
 export const tweetModel = model<TTweet>("Tweet", tweetSchema);

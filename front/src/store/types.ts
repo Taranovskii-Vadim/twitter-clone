@@ -6,6 +6,13 @@ import { IState as IUsersState } from "./models/users/types";
 
 export type TStatus = "initial" | "loading" | "error";
 
+export type TResponseStatus = "error" | "success";
+
+export interface IResponse<T> {
+  status: TResponseStatus;
+  result: T;
+}
+
 export interface IUser {
   readonly id: string;
   name: string;

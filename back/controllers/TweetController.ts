@@ -5,23 +5,15 @@ import { isValidObjectId } from "mongoose";
 import { tweetModel } from "../models/TweetModel";
 import { ITweet } from "../models/TweetModel/types";
 import { TUser } from "../models/UserModel/types";
-import { sendError, unknownError } from "../utils/sendError";
+import { getFormattedTweet } from "../utils/getFormatedTweet";
+import { sendError, sendSuccess, unknownError } from "../utils/sendResponse";
 
 class TweetController {
   async index(_, res: express.Response): Promise<void> {
     try {
       const data = await tweetModel.find().populate("user");
-      const tweets = data.map(item => ({
-        id: item.id,
-        text: item.text,
-        date: item.date,
-        user: {
-          id: item.user._id,
-          name: item.user.name,
-          nickname: item.user.nickname,
-        },
-      }));
-      res.status(200).json(tweets);
+      const tweets = data.map(item => getFormattedTweet(item));
+      res.status(200).json(sendSuccess(tweets));
     } catch (e) {
       res.status(500).json(unknownError());
     }
@@ -37,16 +29,8 @@ class TweetController {
       if (!data) {
         res.status(404).json(sendError("Данного твита не существует"));
       }
-      res.status(200).json({
-        id: data._id,
-        text: data.text,
-        date: data.date,
-        user: {
-          id: data.user._id,
-          name: data.user.name,
-          nickname: data.user.nickname,
-        },
-      });
+      const tweet = getFormattedTweet(data);
+      res.status(200).json(sendSuccess(tweet));
     } catch (e) {
       res.status(500).json(unknownError());
     }
@@ -65,7 +49,8 @@ class TweetController {
           user: user._id,
         };
         const tweet = await tweetModel.create(data);
-        res.status(201).json(tweet);
+        const result = await tweet.populate("user").execPopulate();
+        res.status(201).json(getFormattedTweet(result));
       } else {
         res.status(401).json(sendError("Необходимо авторизоваться"));
       }
@@ -108,11 +93,11 @@ class TweetController {
         res.status(400).json(sendError("URL адрес некорректный"));
         return;
       }
-      const tweet = await tweetModel.findById(tweetId);
+      const tweet = await tweetModel.findById(tweetId).populate("user").exec();
       if (tweet) {
         tweet.text = req.body.text;
         await tweet.save();
-        res.status(200).json(tweet);
+        res.status(200).json(getFormattedTweet(tweet));
       } else {
         res.status(404).json(sendError("Твит не существует"));
       }
