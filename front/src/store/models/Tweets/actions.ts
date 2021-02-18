@@ -6,7 +6,9 @@ import {
   IAddTweet,
   IChangeFormStatus,
   IChangeStatus,
+  IDeleteTweet,
   IFetchTweets,
+  IFilterTweets,
   ISetTweet,
   ISetTweets,
   IState,
@@ -22,6 +24,11 @@ export const setTweet = (payload: ITweet): ISetTweet => ({
   payload,
 });
 
+export const filterTweets = (payload: string): IFilterTweets => ({
+  type: ETypes.FILTER_TWEETS,
+  payload,
+});
+
 export const changeStatus = (
   status: TStatus,
   message?: IMessage
@@ -32,6 +39,11 @@ export const changeStatus = (
 
 export const addTweet = (payload: string): IAddTweet => ({
   type: ETypes.ADD_TWEET,
+  payload,
+});
+
+export const deleteTweet = (payload: string): IDeleteTweet => ({
+  type: ETypes.DELETE_TWEET,
   payload,
 });
 

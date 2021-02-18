@@ -11,7 +11,10 @@ import { sendError, sendSuccess, unknownError } from "../utils/sendResponse";
 class TweetController {
   async index(_, res: express.Response): Promise<void> {
     try {
-      const data = await tweetModel.find().populate("user");
+      const data = await tweetModel
+        .find()
+        .populate("user")
+        .sort({ createdAt: "-1" });
       const tweets = data.map(item => getFormattedTweet(item));
       res.status(200).json(sendSuccess(tweets));
     } catch (e) {
@@ -50,7 +53,7 @@ class TweetController {
         };
         const tweet = await tweetModel.create(data);
         const result = await tweet.populate("user").execPopulate();
-        res.status(201).json(getFormattedTweet(result));
+        res.status(201).json(sendSuccess(getFormattedTweet(result)));
       } else {
         res.status(401).json(sendError("Необходимо авторизоваться"));
       }

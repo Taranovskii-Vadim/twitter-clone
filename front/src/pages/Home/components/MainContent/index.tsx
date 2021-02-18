@@ -11,7 +11,10 @@ import ContentTitle from "./components/ContentTitle";
 
 import { getSnackBarConfig } from "../../../../helpers";
 
-import { fetchTweets } from "../../../../store/models/tweets/actions";
+import {
+  deleteTweet,
+  fetchTweets,
+} from "../../../../store/models/tweets/actions";
 import {
   selectStatus,
   selectTweets,
@@ -52,7 +55,13 @@ const MainContent: React.FC = (): JSX.Element => {
               <CircularProgress />
             </div>
           ) : (
-            tweets.map(item => <Tweet key={item.id} tweet={item} />)
+            tweets.map(item => (
+              <Tweet
+                onDelete={id => dispatch(deleteTweet(id))}
+                key={item.id}
+                tweet={item}
+              />
+            ))
           )}
         </Route>
         <Route path='/search' render={() => <p>Search</p>} />

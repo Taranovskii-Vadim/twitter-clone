@@ -17,6 +17,17 @@ export const useStyles = makeStyles(theme => ({
       backgroundColor: grey[100],
     },
   },
+  rootLinkWrapper: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    "& a": {
+      flex: "auto",
+    },
+  },
+  rootMoreBtn: {
+    alignSelf: "flex-start",
+  },
   rootHeader: {
     display: "flex",
     marginBottom: 10,

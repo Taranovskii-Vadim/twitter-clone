@@ -1,5 +1,4 @@
-import axios from "axios";
-
+import { axios } from "../../core/axios";
 import { ITweet } from "../models/tweet/types";
 import { IResponse } from "../types";
 
@@ -13,10 +12,12 @@ export const tweetsApi = {
     return await data.result;
   },
   async addTweet(text: string): Promise<ITweet> {
-    const payload = {
-      text: JSON.stringify(text),
-    };
+    const payload = { text };
     const { data } = await axios.post<IResponse<ITweet>>("/tweets", payload);
     return await data.result;
+  },
+  async deleteTweet(id: string): Promise<string> {
+    await axios.delete<IResponse<ITweet>>(`/tweets/${id}`);
+    return id;
   },
 };
