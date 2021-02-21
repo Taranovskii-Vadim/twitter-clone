@@ -1,5 +1,7 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
@@ -15,8 +17,31 @@ interface IProps {
   finishSubmit: () => void;
 }
 
+const schema = yup.object().shape({
+  email: yup.string().email("Неверный формат email").required("Введите email"),
+  name: yup
+    .string()
+    .min(2, "Длина имени должна быть больше 6 символов")
+    .required("Введите имя"),
+  nickname: yup
+    .string()
+    .min(2, "Длина ника должна быть больше 6 символов")
+    .max(15, "Длина ника должна быть меньше 15 символов")
+    .required("Введите ник"),
+  password: yup
+    .string()
+    .min(6, "Длина пароля должна быть больше 6 символов")
+    .required("Введите пароль"),
+  confirmPass: yup
+    .string()
+    .min(6, "Длина пароля должна быть больше 6 символов")
+    .required("Введите пароль"),
+});
+
 const SignUpForm: React.FC<IProps> = ({ finishSubmit }): JSX.Element => {
-  const { register, setValue, watch, handleSubmit, reset } = useForm<IForm>();
+  const { control, errors, handleSubmit, reset } = useForm<IForm>({
+    resolver: yupResolver(schema),
+  });
 
   const onSubmit = (data: IForm) => {
     console.log(data);
@@ -24,50 +49,82 @@ const SignUpForm: React.FC<IProps> = ({ finishSubmit }): JSX.Element => {
     reset();
   };
 
-  React.useEffect(() => {
-    register("email", { required: true });
-    register("name", { required: true });
-    register("nickname", { required: true });
-    register("password", { required: true });
-    register("confirmPass", { required: true });
-  }, [register]);
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <TextField
-        label='Электронный адрес'
-        value={watch("email")}
-        onChange={e => setValue("email", e.target.value)}
-        type='email'
-        fullWidth
+      <Controller
+        control={control}
+        name='email'
+        render={({ value, onChange }) => (
+          <TextField
+            error={!!errors.email}
+            helperText={errors.email ? errors.email.message : ""}
+            label='Электронный адрес'
+            value={value}
+            onChange={onChange}
+            type='email'
+            fullWidth
+          />
+        )}
       />
-      <TextField
-        label='Имя'
-        type='text'
-        value={watch("name")}
-        onChange={e => setValue("name", e.target.value)}
-        fullWidth
+      <Controller
+        control={control}
+        name='name'
+        render={({ value, onChange }) => (
+          <TextField
+            error={!!errors.name}
+            helperText={errors.name ? errors.name.message : ""}
+            label='Имя'
+            value={value}
+            onChange={onChange}
+            type='text'
+            fullWidth
+          />
+        )}
       />
-      <TextField
-        label='Ник'
-        type='text'
-        value={watch("nickname")}
-        onChange={e => setValue("nickname", e.target.value)}
-        fullWidth
+      <Controller
+        control={control}
+        name='nickname'
+        render={({ value, onChange }) => (
+          <TextField
+            error={!!errors.nickname}
+            helperText={errors.nickname ? errors.nickname.message : ""}
+            label='Ник'
+            value={value}
+            onChange={onChange}
+            type='text'
+            fullWidth
+          />
+        )}
       />
-      <TextField
-        label='Пароль'
-        type='password'
-        value={watch("password")}
-        onChange={e => setValue("password", e.target.value)}
-        fullWidth
+      <Controller
+        control={control}
+        name='password'
+        render={({ value, onChange }) => (
+          <TextField
+            error={!!errors.password}
+            helperText={errors.password ? errors.password.message : ""}
+            label='Пароль'
+            value={value}
+            onChange={onChange}
+            type='password'
+            fullWidth
+          />
+        )}
       />
-      <TextField
-        label='Повторите пароль'
-        value={watch("confirmPass")}
-        onChange={e => setValue("confirmPass", e.target.value)}
-        type='password'
-        fullWidth
+      <Controller
+        control={control}
+        name='confirmPass'
+        render={({ value, onChange }) => (
+          <TextField
+            error={!!errors.confirmPass}
+            helperText={errors.confirmPass ? errors.confirmPass.message : ""}
+            label='Повторите пароль'
+            value={value}
+            onChange={onChange}
+            type='password'
+            fullWidth
+          />
+        )}
       />
       <Button
         style={{ margin: "15px 0px 10px" }}
