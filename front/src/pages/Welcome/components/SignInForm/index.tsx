@@ -2,13 +2,17 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSnackbar } from "notistack";
+import { useDispatch } from "react-redux";
 import * as yup from "yup";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
-import { authApi, IAuthData } from "../../../../store/api/authApi";
 import { getSnackBarConfig } from "../../../../helpers";
+import { IAuthData } from "../../../../store/models/user/types";
+
+import { fetchUser } from "../../../../store/models/user/actions";
+import { useHistory } from "react-router-dom";
 
 interface IProps {
   finishSubmit: () => void;
@@ -29,14 +33,15 @@ const SignInForm: React.FC<IProps> = ({ finishSubmit }): JSX.Element => {
 
   const { enqueueSnackbar } = useSnackbar();
 
+  const history = useHistory();
+
+  const dispatch = useDispatch();
+
   const onSubmitHandler = async (data: IAuthData) => {
-    try {
-      const result = await authApi.signIn(data);
-      finishSubmit();
-      reset();
-    } catch (e) {
-      enqueueSnackbar("Неверный логин или пароль", getSnackBarConfig("error"));
-    }
+    dispatch(fetchUser(data));
+    finishSubmit();
+    reset();
+    history.replace("/home");
   };
 
   return (

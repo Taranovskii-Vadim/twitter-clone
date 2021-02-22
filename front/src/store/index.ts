@@ -8,21 +8,25 @@ import { tweetsReducer } from "./models/tweets";
 import { tagsReducer } from "./models/tags";
 import { tweetReducer } from "./models/tweet";
 import { usersReducer } from "./models/users";
+import { userReducer } from "./models/user";
+
 // Saga
 import { tweetsSaga } from "./models/tweets/saga";
 import { tagsSaga } from "./models/tags/saga";
 import { tweetSaga } from "./models/tweet/saga";
 import { usersSaga } from "./models/users/saga";
+import { userSaga } from "./models/user/saga";
 
 const rootReducer = combineReducers({
   tweets: tweetsReducer,
   tweet: tweetReducer,
   tags: tagsReducer,
   users: usersReducer,
+  user: userReducer,
 });
 
 function* rootSaga() {
-  yield all([tweetsSaga(), tagsSaga(), tweetSaga(), usersSaga()]);
+  yield all([tweetsSaga(), tagsSaga(), tweetSaga(), usersSaga(), userSaga()]);
 }
 
 const sagaMiddleware = createSagaMiddleware();

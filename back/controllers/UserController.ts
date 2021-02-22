@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 
 import { userModel } from "../models/UserModel";
+import { TUser } from "../models/UserModel/types";
+import { getFormatedUser } from "../utils/getFormatedUser";
 import { sendError, unknownError } from "../utils/sendResponse";
 
 const isValidObjectId = (value: string) => mongoose.isValidObjectId(value);
@@ -41,7 +43,8 @@ class UserController {
   }
   async getMyself(req: express.Request, res: express.Response): Promise<void> {
     try {
-      res.status(200).json(req.user);
+      const user = req.user ? (req.user as TUser).toJSON() : undefined;
+      res.status(200).json(getFormatedUser({ ...user, token: "" }));
     } catch (e) {
       res.status(500).json(unknownError());
     }

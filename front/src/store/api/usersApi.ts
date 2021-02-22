@@ -1,4 +1,4 @@
-import axios from "axios";
+import { axios } from "../../core/axios";
 import { IState as IUsersState } from "../models/users/types";
 
 export const usersApi = {

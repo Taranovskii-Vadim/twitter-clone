@@ -17,7 +17,7 @@ import {
   selectFormMessage,
   selectFormStatus,
 } from "../../store/models/tweets/selectors";
-
+import { selectUserAvatar } from "../../store/models/user/selectors";
 import { addTweet } from "../../store/models/tweets/actions";
 import { MAX_TEXTAREA_LENGTH } from "./constants";
 
@@ -40,6 +40,8 @@ const TweetForm: React.FC<IProps> = ({ padding }): JSX.Element => {
 
   const formStatus = useSelector(selectFormStatus);
   const formMessage = useSelector(selectFormMessage);
+
+  const avatar = useSelector(selectUserAvatar);
 
   const tweetText = watch("tweetText", "");
 
@@ -79,10 +81,7 @@ const TweetForm: React.FC<IProps> = ({ padding }): JSX.Element => {
       className={styles.root}
     >
       <div className={styles.avatarBlock}>
-        <UserAvatar
-          size='small'
-          url='https://twizz.ru/wp-content/uploads/2020/10/1601624395_8c7dd922ad47494fc02c388e12c00eac.jpg'
-        />
+        <UserAvatar size='small' url={avatar} />
       </div>
       <div className={styles.rootFormBlock}>
         <TextareaAutosize

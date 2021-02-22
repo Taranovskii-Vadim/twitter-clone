@@ -1,5 +1,6 @@
 import { Action } from "redux";
-import { IMessage, IUser, TStatus } from "../../types";
+import { IMessage, TStatus } from "../../types";
+import { IUser } from "../user/types";
 
 // data
 

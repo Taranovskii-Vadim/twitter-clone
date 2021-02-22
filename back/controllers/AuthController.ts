@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 
 import { userModel } from "../models/UserModel";
 import { IUser, TUser } from "../models/UserModel/types";
+import { getFormatedUser } from "../utils/getFormatedUser";
 
 import { getMd5Hash } from "../utils/getMd5Hash";
 import { sendEmail } from "../utils/sendEmail";
@@ -68,12 +69,14 @@ class AuthController {
     try {
       const user = req.user ? (req.user as TUser).toJSON() : undefined;
       res.json(
-        sendSuccess({
-          ...user,
-          token: jwt.sign({ data: user }, process.env.SECRET_KEY, {
-            expiresIn: "30d",
-          }),
-        })
+        sendSuccess(
+          getFormatedUser({
+            ...user,
+            token: jwt.sign({ data: user }, process.env.SECRET_KEY, {
+              expiresIn: "30d",
+            }),
+          })
+        )
       );
     } catch (e) {
       res.status(500).json(unknownError());
