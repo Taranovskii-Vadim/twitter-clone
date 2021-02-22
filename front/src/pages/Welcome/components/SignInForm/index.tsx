@@ -1,9 +1,14 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useSnackbar } from "notistack";
 import * as yup from "yup";
+
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+
+import { authApi, IAuthData } from "../../../../store/api/authApi";
+import { getSnackBarConfig } from "../../../../helpers";
 
 interface IProps {
   finishSubmit: () => void;
@@ -17,20 +22,21 @@ const schema = yup.object().shape({
     .required("Введите пароль"),
 });
 
-interface IFormValues {
-  email: string;
-  password: string;
-}
-
 const SignInForm: React.FC<IProps> = ({ finishSubmit }): JSX.Element => {
-  const { handleSubmit, control, errors, reset } = useForm<IFormValues>({
+  const { handleSubmit, control, errors, reset } = useForm<IAuthData>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmitHandler = (data: IFormValues) => {
-    console.log(data);
-    finishSubmit();
-    reset();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const onSubmitHandler = async (data: IAuthData) => {
+    try {
+      const result = await authApi.signIn(data);
+      finishSubmit();
+      reset();
+    } catch (e) {
+      enqueueSnackbar("Неверный логин или пароль", getSnackBarConfig("error"));
+    }
   };
 
   return (

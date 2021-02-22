@@ -7,7 +7,7 @@ import { IUser, TUser } from "../models/UserModel/types";
 
 import { getMd5Hash } from "../utils/getMd5Hash";
 import { sendEmail } from "../utils/sendEmail";
-import { sendError, unknownError } from "../utils/sendResponse";
+import { sendError, sendSuccess, unknownError } from "../utils/sendResponse";
 
 class AuthController {
   async create(req: express.Request, res: express.Response): Promise<void> {
@@ -67,12 +67,14 @@ class AuthController {
   async addToken(req: express.Request, res: express.Response): Promise<void> {
     try {
       const user = req.user ? (req.user as TUser).toJSON() : undefined;
-      res.json({
-        ...user,
-        token: jwt.sign({ data: user }, process.env.SECRET_KEY, {
-          expiresIn: "30d",
-        }),
-      });
+      res.json(
+        sendSuccess({
+          ...user,
+          token: jwt.sign({ data: user }, process.env.SECRET_KEY, {
+            expiresIn: "30d",
+          }),
+        })
+      );
     } catch (e) {
       res.status(500).json(unknownError());
     }
