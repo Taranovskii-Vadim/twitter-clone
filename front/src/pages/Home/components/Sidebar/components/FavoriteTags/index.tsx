@@ -12,8 +12,11 @@ interface IProps {
   tags: ITagsState["items"];
 }
 
-const FavoriteTags: React.FC<IProps> = ({ tags }): JSX.Element => {
+const FavoriteTags: React.FC<IProps> = ({ tags }): JSX.Element | null => {
   const styles = useStyles();
+  if (!tags.length) {
+    return null;
+  }
   return (
     <List disablePadding className={styles.root}>
       <ListItem className={styles.rootItem}>
