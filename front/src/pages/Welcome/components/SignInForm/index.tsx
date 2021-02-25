@@ -1,14 +1,12 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useSnackbar } from "notistack";
 import { useDispatch } from "react-redux";
 import * as yup from "yup";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
-import { getSnackBarConfig } from "../../../../helpers";
 import { IAuthData } from "../../../../store/models/user/types";
 
 import { fetchUser } from "../../../../store/models/user/actions";
@@ -30,8 +28,6 @@ const SignInForm: React.FC<IProps> = ({ finishSubmit }): JSX.Element => {
   const { handleSubmit, control, errors, reset } = useForm<IAuthData>({
     resolver: yupResolver(schema),
   });
-
-  const { enqueueSnackbar } = useSnackbar();
 
   const history = useHistory();
 

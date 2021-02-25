@@ -15,8 +15,11 @@ interface IProps {
   users: IUsersState["items"];
 }
 
-const Suggestions: React.FC<IProps> = ({ users }): JSX.Element => {
+const Suggestions: React.FC<IProps> = ({ users }): JSX.Element | null => {
   const styles = useStyles();
+  if (!users.length) {
+    return null;
+  }
   return (
     <List disablePadding className={styles.root}>
       <ListItem className={styles.rootItem}>

@@ -4,14 +4,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-
-interface IForm {
-  email: string;
-  name: string;
-  nickname: string;
-  password: string;
-  confirmPass: string;
-}
+import { ICreateData } from "../../../../store/models/user/types";
+import { useDispatch } from "react-redux";
+import { createUser } from "../../../../store/models/user/actions";
 
 interface IProps {
   finishSubmit: () => void;
@@ -23,11 +18,6 @@ const schema = yup.object().shape({
     .string()
     .min(2, "Длина имени должна быть больше 6 символов")
     .required("Введите имя"),
-  nickname: yup
-    .string()
-    .min(2, "Длина ника должна быть больше 6 символов")
-    .max(15, "Длина ника должна быть меньше 15 символов")
-    .required("Введите ник"),
   password: yup
     .string()
     .min(6, "Длина пароля должна быть больше 6 символов")
@@ -39,12 +29,14 @@ const schema = yup.object().shape({
 });
 
 const SignUpForm: React.FC<IProps> = ({ finishSubmit }): JSX.Element => {
-  const { control, errors, handleSubmit, reset } = useForm<IForm>({
+  const { control, errors, handleSubmit, reset } = useForm<ICreateData>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: IForm) => {
-    console.log(data);
+  const dispatch = useDispatch();
+
+  const onSubmit = (data: ICreateData) => {
+    dispatch(createUser(data));
     finishSubmit();
     reset();
   };
@@ -74,21 +66,6 @@ const SignUpForm: React.FC<IProps> = ({ finishSubmit }): JSX.Element => {
             error={!!errors.name}
             helperText={errors.name ? errors.name.message : ""}
             label='Имя'
-            value={value}
-            onChange={onChange}
-            type='text'
-            fullWidth
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name='nickname'
-        render={({ value, onChange }) => (
-          <TextField
-            error={!!errors.nickname}
-            helperText={errors.nickname ? errors.nickname.message : ""}
-            label='Ник'
             value={value}
             onChange={onChange}
             type='text'

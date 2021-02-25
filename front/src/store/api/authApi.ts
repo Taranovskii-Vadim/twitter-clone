@@ -1,5 +1,5 @@
 import { axios } from "../../core/axios";
-import { IAuthData, IUser } from "../models/user/types";
+import { IAuthData, ICreateData, IUser } from "../models/user/types";
 import { IResponse } from "../types";
 
 export const authApi = {
@@ -8,6 +8,13 @@ export const authApi = {
       username: payload.email,
       password: payload.password,
     });
+    return await data.result;
+  },
+  async signUp(payload: ICreateData): Promise<IUser> {
+    const { data } = await axios.post<IResponse<IUser>>(
+      "/auth/signUp",
+      payload
+    );
     return await data.result;
   },
   async getMe(): Promise<any> {

@@ -7,10 +7,6 @@ export const signUpValidator = [
     .isLength({ min: 2 })
     .withMessage("Длина имени не должна быть меньше 2 символов")
     .trim(),
-  body("nickname", "Укажите ник")
-    .isLength({ min: 2, max: 15 })
-    .withMessage("Длина ника должна быть от 2 до 15 символов")
-    .trim(),
   body("password", "Укажите пароль")
     .isLength({ min: 6 })
     .withMessage("Длина пароля должна быть не менее 6 символов")

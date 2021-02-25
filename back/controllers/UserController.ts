@@ -9,16 +9,21 @@ import { sendError, unknownError } from "../utils/sendResponse";
 const isValidObjectId = (value: string) => mongoose.isValidObjectId(value);
 // TODO:Разобраться с возвращаемыми объектами
 class UserController {
-  async index(_, res: express.Response): Promise<void> {
+  async index(req: express.Request, res: express.Response): Promise<void> {
     try {
-      const data = await userModel.find();
-      res.status(200).json(
-        data.map(item => ({
-          id: item._id,
-          name: item.name,
-          nickname: item.nickname,
-        }))
-      );
+      const user = req.user ? (req.user as TUser).toJSON() : undefined;
+      if (user) {
+        const data = await userModel.find({ _id: { $nin: [user._id] } });
+        res.status(200).json(
+          data.map(item => ({
+            id: item._id,
+            name: item.name,
+            nickname: item.nickname,
+          }))
+        );
+      } else {
+        res.status(404).json(sendError("Пользователь не найден"));
+      }
     } catch (e) {
       res.status(500).json(unknownError());
     }

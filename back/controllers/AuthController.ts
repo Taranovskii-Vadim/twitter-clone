@@ -21,11 +21,11 @@ class AuthController {
 
       const data: IUser = {
         name: req.body.name,
-        nickname: req.body.nickname,
+        nickname: `Test${Math.ceil(Math.random() * 100)}`,
         email: req.body.email,
         password: getMd5Hash(req.body.password + process.env.SECRET_KEY),
         confirmedHash: getMd5Hash(
-          process.env.SECRET_KEY || Math.random().toString()
+          process.env.SECRET_KEY + Math.random().toString()
         ),
       };
 
@@ -49,6 +49,7 @@ class AuthController {
         }
       );
     } catch (e) {
+      console.log(e);
       res.status(500).json(unknownError());
     }
   }

@@ -11,7 +11,11 @@ router.get(
   userController.getMyself
 );
 
-router.get("/", userController.index);
+router.get(
+  "/",
+  appPassport.authenticate("jwt", { session: false }),
+  userController.index
+);
 
 router.get("/:id", userController.getOne);
 
