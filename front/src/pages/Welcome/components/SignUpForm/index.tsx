@@ -24,8 +24,7 @@ const schema = yup.object().shape({
     .required("Введите пароль"),
   confirmPass: yup
     .string()
-    .min(6, "Длина пароля должна быть больше 6 символов")
-    .required("Введите пароль"),
+    .oneOf([yup.ref("password"), null], "Пароли должны совпадать"),
 });
 
 const SignUpForm: React.FC<IProps> = ({ finishSubmit }): JSX.Element => {
